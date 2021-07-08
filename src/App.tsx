@@ -14,6 +14,14 @@ type appPropsType = {
         id: number,
         message: string,
         likesCount: number
+    }[],
+    dialogs: {
+        id: number,
+        name: string
+    }[],
+    messages: {
+        id: number,
+        message: string
     }[]
 }
 
@@ -27,7 +35,7 @@ const App = (props: appPropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                     <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
