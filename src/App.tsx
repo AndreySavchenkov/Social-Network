@@ -9,9 +9,18 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 
+type appPropsType = {
+    posts: {
+        id: number,
+        message: string,
+        likesCount: number
+    }[]
+}
+
+const App = (props: appPropsType) => {
 
 
-const App = () => {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -19,7 +28,7 @@ const App = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs/>}/>
-                    <Route path='/profile' render={() => <Profile/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
