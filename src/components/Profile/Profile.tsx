@@ -5,12 +5,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 
-type profilePropsType = {
-    posts: {
-        id: number,
-        message: string,
-        likesCount: number
-    }[]
+type profilePropsType = {state:{
+        posts: {
+            id: number,
+            message: string,
+            likesCount: number
+        }[]
+    }
+
 }
 
 
@@ -21,7 +23,7 @@ const Profile = (props: profilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.state.posts}/>
         </div>
     );
 }

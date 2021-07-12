@@ -9,34 +9,24 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 
-type appPropsType = {
-    posts: {
-        id: number,
-        message: string,
-        likesCount: number
-    }[],
-    dialogs: {
-        id: number,
-        name: string
-    }[],
-    messages: {
-        id: number,
-        message: string
-    }[]
-}
-
-const App = (props: appPropsType) => {
+//NEEDED TO CHANGE!
+// type appStatePropsType = {state: {
+//         posts: {id: number, message: string, likesCount: number}[],
+//         dialogs: {id: number, name: string}[],
+//         messages: {id: number, message: string}[]
+//     }
+// }
 
 
-
+const App = (props:any) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogPage}/>}/>
+                    <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
