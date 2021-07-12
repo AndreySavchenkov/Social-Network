@@ -23,7 +23,14 @@ let state = {
             {id: 4, name: 'Ira'},
             {id: 5, name: 'Marat'},
         ]
-    }
+    },
+    friendsList: [
+        {id: 1, name: 'Andrew'},
+        {id: 2, name: 'Alex'},
+        {id: 3, name: 'Viktor'}
+
+    ]
+
 
 }
 

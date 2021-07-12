@@ -23,7 +23,7 @@ const App = (props:any) => {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar name={props.state.friendsList}/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogPage}/>}/>
                     <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>}/>
