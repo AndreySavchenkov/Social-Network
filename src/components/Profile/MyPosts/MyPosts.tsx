@@ -2,6 +2,7 @@ import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
+
 type myPostsPropsType = {
     posts: {
         id: number,
@@ -11,13 +12,16 @@ type myPostsPropsType = {
 }
 
 const MyPosts = (props: myPostsPropsType) => {
+    
 
     let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
-    let newPostElement = React.createRef();
+    let newPostElement: any = React.createRef();
+
 
     let addPost = () => {
-        let text = newPostElement.current.value;
+        debugger;
+        let text: any = newPostElement.current.value;
         alert(text)
     }
 
