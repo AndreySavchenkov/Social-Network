@@ -20,7 +20,7 @@ const MyPosts = (props: myPostsPropsType) => {
 
 
     let addPost = () => {
-        debugger;
+
         let text: any = newPostElement.current.value;
         alert(text)
     }
