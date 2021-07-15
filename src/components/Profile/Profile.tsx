@@ -6,6 +6,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 type profilePropsType = {state:{
+
         posts: {
             id: number,
             message: string,
@@ -16,14 +17,14 @@ type profilePropsType = {state:{
 }
 
 
-const Profile = (props: profilePropsType) => {
+const Profile = (props: any) => {
 
 
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts}/>
+            <MyPosts posts={props.state.posts} addPost={props.addPost}/>
         </div>
     );
 }

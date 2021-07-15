@@ -11,10 +11,10 @@ type myPostsPropsType = {
     }[]
 }
 
-const MyPosts = (props: myPostsPropsType) => {
+const MyPosts = (props: any) => {
     
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message} likesCount={p.likesCount}/>)
 
     let newPostElement: any = React.createRef();
 
@@ -22,7 +22,7 @@ const MyPosts = (props: myPostsPropsType) => {
     let addPost = () => {
 
         let text: any = newPostElement.current.value;
-        alert(text)
+        props.addPost(text);
     }
 
 
