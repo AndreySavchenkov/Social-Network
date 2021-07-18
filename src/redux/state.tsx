@@ -1,3 +1,6 @@
+import {rerenderedEntireThree} from "../render";
+
+
 let state = {
     profilePage: {
         posts : [
@@ -7,6 +10,7 @@ let state = {
             {id: 4, message: "You're interesting man but I want to sleep", likesCount: 10},
             {id: 5, message: "It's my first post", likesCount: 22},
         ],
+        newPostText: 'it-camasutra.com'
     },
     dialogPage: {
         messages : [
@@ -34,14 +38,24 @@ let state = {
 
 }
 
+
+
 export let addPost = (postMessage: any) => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderedEntireThree(state);
+}
+
+export let updateNewPostText = (newText: any) => {
+
+    state.profilePage.newPostText = newText;
+    rerenderedEntireThree(state);
 }
 
 export default state;
