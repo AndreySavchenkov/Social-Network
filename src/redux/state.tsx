@@ -1,7 +1,39 @@
 import {rerenderedEntireThree} from "../render";
 
+export  type stateType = {
+    profilePage: {
+        posts: Array<postType>,
+        newPostText: string
+    },
+    dialogPage: {
+        messages: Array<messageType>,
+        dialogs: Array<dialogType>,
+    },
+    friendsList: Array<frendList>
+}
 
-let state = {
+export type postType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+
+export type messageType = {
+    id: number,
+    message: string
+}
+
+export type dialogType = {
+    id: number,
+    name: string
+}
+
+export type frendList = {
+    id: number,
+    name: string
+}
+
+let state:stateType = {
     profilePage: {
         posts : [
             {id: 1, message: "Hello everybody!!!)", likesCount: 12},
