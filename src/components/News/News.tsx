@@ -1,8 +1,11 @@
 import React from "react";
 import s from './News.module.css'
 
+type newsPropsType = {
 
-const News = (props: any) => {
+}
+
+export  const News = (props: newsPropsType) => {
     return (
         <div>
             News
@@ -10,4 +13,3 @@ const News = (props: any) => {
     );
 }
 
-export default News;

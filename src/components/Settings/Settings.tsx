@@ -1,8 +1,11 @@
 import React from "react";
 import s from './Settings.module.css'
 
+type settingsPropsType = {
 
-const Settings = (props: any) => {
+}
+
+export const Settings = (props: settingsPropsType) => {
     return (
         <div>
             Settings

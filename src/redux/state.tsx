@@ -40,7 +40,7 @@ let state = {
 
 
 
-export let addPost = (postMessage: any) => {
+export let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,

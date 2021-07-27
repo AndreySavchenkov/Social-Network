@@ -4,12 +4,13 @@ import Post from "./Post/Post";
 import {updateNewPostText} from "../../../redux/state";
 
 
-type myPostsPropsType = {
+export type myPostsPropsType = {
     posts: {
         id: number,
         message: string,
         likesCount: number
-    }[]
+    }[],
+
 }
 
 const MyPosts = (props: any) => {
