@@ -1,11 +1,12 @@
 import React, {useLayoutEffect} from "react";
 import s from './Friends.module.css';
 import NameFriend from "./NameFriend/NameFriend";
+import {friendsList} from "../../redux/state";
 
 
 
 
-const Friends = (props: any) => {
+export const Friends = (props: any) => {
 
 
     let friendsItems = props.name.map((n:any) => <NameFriend name={n.name}/>);
@@ -20,5 +21,3 @@ const Friends = (props: any) => {
 
     )
 };
-
-export default Friends;

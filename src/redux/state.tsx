@@ -1,4 +1,7 @@
-import {rerenderedEntireThree} from "../render";
+let rerenderedEntireThree = (state: any) => {
+    console.log('State changed');
+}
+
 
 export  type stateType = {
     profilePage: {
@@ -9,7 +12,7 @@ export  type stateType = {
         messages: Array<messageType>,
         dialogs: Array<dialogType>,
     },
-    friendsList: Array<frendList>
+    friendsList: Array<friendsList>
 }
 
 export type postType = {
@@ -28,7 +31,7 @@ export type dialogType = {
     name: string
 }
 
-export type frendList = {
+export type friendsList = {
     id: number,
     name: string
 }
@@ -70,9 +73,7 @@ let state:stateType = {
 
 }
 
-
-
-export let addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
@@ -84,10 +85,17 @@ export let addPost = (postMessage: string) => {
     rerenderedEntireThree(state);
 }
 
-export let updateNewPostText = (newText: any) => {
+export const updateNewPostText = (newText: string) => {
 
     state.profilePage.newPostText = newText;
     rerenderedEntireThree(state);
 }
 
+
+export const subscribe = (observer: any) => {
+    rerenderedEntireThree = observer //observer pattern
+}
+
 export default state;
+
+//store - OOP

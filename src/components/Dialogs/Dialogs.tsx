@@ -1,9 +1,9 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 
-type dialogsPropsType = {state : {
+type DialogsPropsType = {state : {
         dialogs: {
             id: number,
             name: string
@@ -16,7 +16,7 @@ type dialogsPropsType = {state : {
 
 }
 
-const Dialogs = (props: any) => {
+export const Dialogs = (props: DialogsPropsType) => {
 
     let newMessageElement: any = React.createRef();
 
@@ -47,4 +47,3 @@ const Dialogs = (props: any) => {
     );
 }
 
-export default Dialogs;

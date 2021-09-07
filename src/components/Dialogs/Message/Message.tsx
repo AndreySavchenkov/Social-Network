@@ -6,7 +6,7 @@ type messagePropsType = {
     message: string
 }
 
-const Message = (props: messagePropsType) => {
+export const Message = (props: messagePropsType) => {
     return (
             <div className={s.dialog}>
                 {props.message}
@@ -16,4 +16,3 @@ const Message = (props: messagePropsType) => {
 
 
 
-export default Message;

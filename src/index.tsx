@@ -1,11 +1,24 @@
 
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state'
-import {rerenderedEntireThree} from "./render";
+import ReactDOM from "react-dom";
+import React from "react";
+import App from "./App";
+import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
 
 
+let rerenderedEntireThree = (state: any) => {
+
+    ReactDOM.render(
+        <React.StrictMode>
+            <App state={state} addPost={addPost} newPostText={updateNewPostText}/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+
+}
 
 rerenderedEntireThree(state);
+subscribe(rerenderedEntireThree);
 
 
 
