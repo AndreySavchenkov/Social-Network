@@ -1,7 +1,7 @@
 import React, {useLayoutEffect} from "react";
 import s from './Friends.module.css';
 import NameFriend from "./NameFriend/NameFriend";
-import {friendsList} from "../../redux/state";
+import {FriendsListType} from "../../redux/state";
 
 
 

@@ -8,17 +8,17 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
-import {stateType} from "./redux/state";
+import {RootStateType} from "./redux/state";
 
 
- type appStatePropsType = {
-     state: stateType,
+ type AppStatePropsType = {
+     state: RootStateType,
      addPost: (postMessage: string) => void ,
      newPostText: (newText: string) => any
  }
 
 
- const App = (props: appStatePropsType) => {
+ const App:React.FC<AppStatePropsType> = (props) => {
      debugger
     return (
         <BrowserRouter>

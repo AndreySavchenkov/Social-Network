@@ -2,13 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Navbar.module.css';
 import {Friends} from "../Friends/Friends";
-import {friendsList} from "../../redux/state";
+import {FriendsListType} from "../../redux/state";
 
 export type NavbarType = {
-    name: Array<friendsList>
+    name: Array<FriendsListType>
 }
 
-export const Navbar = (props: any) => {
+export const Navbar: React.FC<NavbarType> = (props) => {
 
     return (
         <nav className={s.nav}>

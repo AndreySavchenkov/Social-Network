@@ -1,44 +1,45 @@
-let rerenderedEntireThree = (state: any) => {
+let rerenderedEntireThree = (state: RootStateType) => {
     console.log('State changed');
 }
 
 
-export  type stateType = {
-    profilePage: {
-        posts: Array<postType>,
-        newPostText: string
-    },
-    dialogPage: {
-        messages: Array<messageType>,
-        dialogs: Array<dialogType>,
-    },
-    friendsList: Array<friendsList>
+export  type RootStateType = {
+    profilePage: ProfilePageType,
+    dialogPage: DialogPageType,
+    friendsList: Array<FriendsListType>
 }
-
-export type postType = {
+type PostType = {
     id: number,
     message: string,
     likesCount: number
 }
-
-export type messageType = {
+type MessageType = {
     id: number,
     message: string
 }
-
-export type dialogType = {
+type DialogType = {
     id: number,
     name: string
 }
-
-export type friendsList = {
+export type FriendsListType = {
     id: number,
     name: string
 }
+type ProfilePageType = {
+    posts: Array<PostType>,
+    newPostText: string
+}
+type DialogPageType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+}
 
-let state:stateType = {
+
+
+
+let state: RootStateType = {
     profilePage: {
-        posts : [
+        posts: [
             {id: 1, message: "Hello everybody!!!)", likesCount: 12},
             {id: 2, message: "Yeah!", likesCount: 16},
             {id: 3, message: "Zzzzz...", likesCount: 2},
@@ -48,14 +49,14 @@ let state:stateType = {
         newPostText: 'it-camasutra.com'
     },
     dialogPage: {
-        messages : [
+        messages: [
             {id: 1, message: 'Hi'},
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'I want to work'},
             {id: 4, message: "I'm fine"},
             {id: 5, message: "It's god!"},
         ],
-        dialogs : [
+        dialogs: [
             {id: 1, name: 'Dimuch'},
             {id: 2, name: 'Andrey'},
             {id: 3, name: 'Zina'},
