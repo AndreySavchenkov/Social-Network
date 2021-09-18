@@ -3,22 +3,24 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
+import store, {RootStateType} from "./redux/state";
 
 
-let rerenderedEntireThree = (state: any) => {
+
+let rerenderedEntireThree = (state: RootStateType) => {
 
     ReactDOM.render(
-        <React.StrictMode>
-            <App state={state} addPost={addPost} newPostText={updateNewPostText}/>
-        </React.StrictMode>,
+        <BrowserRouter>
+            <App state={state} addPost={store.addPost.bind(store)} newPostText={store.updateNewPostText.bind(store)}/>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 
 }
 
-rerenderedEntireThree(state);
-subscribe(rerenderedEntireThree);
+rerenderedEntireThree(store.getState());
+store.subscribe(rerenderedEntireThree);
 
 
 

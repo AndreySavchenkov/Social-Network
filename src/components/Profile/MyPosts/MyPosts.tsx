@@ -1,7 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {updateNewPostText} from "../../../redux/state";
+import store from "../../../redux/state";
 
 
 export type myPostsPropsType = {
@@ -30,7 +30,7 @@ const MyPosts = (props: any) => {
     let onPostChange = ()  => {
 
         let text = newPostElement.current.value;
-        updateNewPostText(text);
+        store.updateNewPostText(text);
     }
 
 
