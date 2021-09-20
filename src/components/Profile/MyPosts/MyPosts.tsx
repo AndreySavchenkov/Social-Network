@@ -10,10 +10,11 @@ export type myPostsPropsType = {
         message: string,
         likesCount: number
     }[],
+    dispatch(action:object) :void,
 
 }
 
-const MyPosts = (props: any) => {
+const MyPosts = (props: myPostsPropsType) => {
     
 
     let postsElements = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message} likesCount={p.likesCount}/>)
@@ -23,14 +24,15 @@ const MyPosts = (props: any) => {
 
     let addPost = () => {
 
-        let text = newPostElement.current.value;
-        props.addPost(text);
+
+        props.dispatch({type: 'ADD-POST'});
     }
 
     let onPostChange = ()  => {
 
         let text = newPostElement.current.value;
-        store.updateNewPostText(text);
+        let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        props.dispatch(action);
     }
 
 
@@ -39,7 +41,7 @@ const MyPosts = (props: any) => {
 
         <div className={s.postsBlock}>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                <textarea onChange={ onPostChange } ref={newPostElement} value={props.newPostText}/>
             </div>
             <button onClick={ addPost }>Add Post</button>
             <div>

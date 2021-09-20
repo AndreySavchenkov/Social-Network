@@ -13,8 +13,7 @@ import {RootStateType} from "./redux/state";
 
  type AppStatePropsType = {
      state: RootStateType,
-     addPost: (postMessage: string) => void ,
-     newPostText: (newText: string) => any
+     dispatch() :void
  }
 
 
@@ -28,8 +27,7 @@ import {RootStateType} from "./redux/state";
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogPage}/>}/>
                     <Route path='/profile' render={() => <Profile state={props.state.profilePage}
-                                                                  addPost={props.addPost}
-                                                                  newPostText={props.newPostText}
+                                                                  dispatch={props.dispatch}
                     />}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
