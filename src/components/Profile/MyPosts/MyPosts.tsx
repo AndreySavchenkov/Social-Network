@@ -1,7 +1,8 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import store from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/state";
+
 
 
 export type myPostsPropsType = {
@@ -10,14 +11,16 @@ export type myPostsPropsType = {
         message: string,
         likesCount: number
     }[],
-    dispatch(action:object) :void,
-
+    dispatch(action: object): void,
 }
 
-const MyPosts = (props: myPostsPropsType) => {
-    
 
-    let postsElements = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message} likesCount={p.likesCount}/>)
+
+const MyPosts = (props: any) => {
+
+
+    let postsElements = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message}
+                                                                                               likesCount={p.likesCount}/>)
 
     let newPostElement: any = React.createRef();
 
@@ -25,25 +28,24 @@ const MyPosts = (props: myPostsPropsType) => {
     let addPost = () => {
 
 
-        props.dispatch({type: 'ADD-POST'});
+        props.dispatch(addPostAC());
     }
 
-    let onPostChange = ()  => {
+    let onPostChange = () => {
 
         let text = newPostElement.current.value;
-        let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        let action = updateNewPostTextAC(text)
         props.dispatch(action);
     }
-
 
 
     return (
 
         <div className={s.postsBlock}>
             <div>
-                <textarea onChange={ onPostChange } ref={newPostElement} value={props.newPostText}/>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
             </div>
-            <button onClick={ addPost }>Add Post</button>
+            <button onClick={addPost}>Add Post</button>
             <div>
                 <h3>New post</h3>
             </div>

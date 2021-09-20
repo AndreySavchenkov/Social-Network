@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export let store = {
      _state: {
     profilePage: {
@@ -44,8 +47,8 @@ export let store = {
         this._callSubscriber = observer //observer pattern
     },
 
-    dispatch(action) {
-         if(action.type === 'ADD-POST') {
+    dispatch(action: any) {
+         if(action.type === ADD_POST) {
              let newPost = {
                  id: 5,
                  message: this._state.profilePage.newPostText,
@@ -56,7 +59,7 @@ export let store = {
              this._state.profilePage.newPostText = '';
              this._callSubscriber(this._state);
          }
-         else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+         else if(action.type === UPDATE_NEW_POST_TEXT) {
              this._state.profilePage.newPostText = action.newText;
              this._callSubscriber(this._state);
          }
@@ -64,35 +67,50 @@ export let store = {
 
 }
 
+export type addPostAT = {
+    type: string,
+}
+
+export type updateNewPostTextAT = {
+    type: string,
+    newText: string
+}
+
+
+
+export const addPostAC = (): addPostAT => ({type: ADD_POST});
+export const updateNewPostTextAC = (text: string): updateNewPostTextAT =>  ({type: UPDATE_NEW_POST_TEXT, newText: text});
+
+
 export  type RootStateType = {
     profilePage: ProfilePageType,
     dialogPage: DialogPageType,
-    friendsList: Array<FriendsListType>
+    friendsList: Array<FriendsListType>,
 }
 type PostType = {
     id: number,
     message: string,
-    likesCount: number
+    likesCount: number,
 }
 type MessageType = {
     id: number,
-    message: string
+    message: string,
 }
 type DialogType = {
     id: number,
-    name: string
+    name: string,
 }
 export type FriendsListType = {
     id: number,
-    name: string
+    name: string,
 }
 type ProfilePageType = {
     posts: Array<PostType>,
-    newPostText: string
+    newPostText: string,
 }
 type DialogPageType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogType>
+    messages: Array<MessageType>,
+    dialogs: Array<DialogType>,
 }
 
 
