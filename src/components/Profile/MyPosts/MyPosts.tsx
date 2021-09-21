@@ -1,7 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/state";
+import {ActionsTypes, addPostAC, updateNewPostTextAC} from "../../../redux/state";
 
 
 
@@ -11,7 +11,7 @@ export type myPostsPropsType = {
         message: string,
         likesCount: number
     }[],
-    dispatch(action: object): void,
+    dispatch(action: ActionsTypes): void,
 }
 
 
@@ -24,10 +24,7 @@ const MyPosts = (props: any) => {
 
     let newPostElement: any = React.createRef();
 
-
     let addPost = () => {
-
-
         props.dispatch(addPostAC());
     }
 
@@ -43,7 +40,7 @@ const MyPosts = (props: any) => {
 
         <div className={s.postsBlock}>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.store.newPostText}/>
             </div>
             <button onClick={addPost}>Add Post</button>
             <div>

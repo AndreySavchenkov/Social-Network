@@ -1,7 +1,15 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-export let store = {
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: (state: RootStateType) => void
+    getState: () => RootStateType
+    subscribe: (callback: () => void) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+export let store: StoreType = {
      _state: {
     profilePage: {
         posts: [
@@ -67,20 +75,10 @@ export let store = {
 
 }
 
-export type addPostAT = {
-    type: string,
-}
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>;
 
-export type updateNewPostTextAT = {
-    type: string,
-    newText: string
-}
-
-
-
-export const addPostAC = (): addPostAT => ({type: ADD_POST});
-export const updateNewPostTextAC = (text: string): updateNewPostTextAT =>  ({type: UPDATE_NEW_POST_TEXT, newText: text});
-
+export const addPostAC = () => ({type: ADD_POST} as const);
+export const updateNewPostTextAC = (newText: string) =>  ({type: UPDATE_NEW_POST_TEXT, newText} as const);
 
 export  type RootStateType = {
     profilePage: ProfilePageType,
@@ -114,7 +112,7 @@ type DialogPageType = {
 }
 
 
-export default store;
+
 
 
 //store - OOP
