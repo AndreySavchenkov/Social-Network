@@ -38,12 +38,6 @@ export let store: StoreType = {
             ],
             newMessageBody: '',
         },
-        friendsList: [
-            {id: 1, name: 'Andrew'},
-            {id: 2, name: 'Alex'},
-            {id: 3, name: 'Viktor'}
-
-        ]
     },
     _callSubscriber(state: RootStateType) {
         console.log('State changed');
@@ -71,13 +65,9 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
 
-
-
-
 export  type RootStateType = {
     profilePage: ProfilePageType,
     dialogPage: DialogPageType,
-    friendsList: Array<FriendsListType>,
 }
 export type PostType = {
     id: number,
@@ -89,10 +79,6 @@ export type MessageType = {
     message: string,
 }
 export type DialogType = {
-    id: number,
-    name: string,
-}
-export type FriendsListType = {
     id: number,
     name: string,
 }
