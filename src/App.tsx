@@ -4,17 +4,10 @@ import Header from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {ActionsTypes} from "./redux/store";
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 
-export type AppStatePropsType = {
-    dispatch(action: ActionsTypes): void
-    store: any//StoreType
-}
-
-
-const App: React.FC = (props: any) => {
+const App: React.FC = () => {
 
     // const state = props.store.getState();
 

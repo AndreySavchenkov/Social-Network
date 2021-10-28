@@ -2,16 +2,7 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-type profilePropsType = {state:{
-        posts: {
-            id: number,
-            message: string,
-            likesCount: number
-        }[]
-    }
-}
-
-const Profile = (props: any) => {
+export const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
