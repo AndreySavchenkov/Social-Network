@@ -54,7 +54,6 @@ export let store: StoreType = {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
-        // this._state.friendsList = sidebarReducer(this._state.friendsList, action);
         this._callSubscriber(this._state);
     },
 
