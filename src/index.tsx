@@ -4,14 +4,17 @@ import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/redux-store";
-import {RootStateType} from "./redux/store";
+import {Provider} from "./storeContext";
+import {RootStateType, store} from "./redux/store";
+
 
 
 let rerenderedEntireThree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App dispatch={store.dispatch.bind(store)} store={store}/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
@@ -19,7 +22,7 @@ let rerenderedEntireThree = (state: RootStateType) => {
 
 rerenderedEntireThree(store.getState());
 
-// @ts-ignore
+
 store.subscribe(() => {
     let state = store.getState();
     rerenderedEntireThree(state);

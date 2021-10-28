@@ -2,7 +2,7 @@ import React from "react";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 import {ActionsTypes} from "../../../redux/store";
 import MyPosts from "./MyPosts";
-
+import {StoreContext} from "../../../storeContext";
 
 
 export type myPostsContainerPropsType = {
@@ -15,27 +15,32 @@ export type myPostsContainerPropsType = {
 }
 
 
-
 export const MyPostsContainer = (props: any) => {
 
-    let state = props.store.getState()
-
-    let addPost = () => {
-        props.store.dispatch(addPostAC());
-        //props.addPost();
-    }
-
-    let onPostChange = (text: string) => {
-        let action = updateNewPostTextAC(text)
-        props.store.dispatch(action);
-    }
 
     return (
-        <MyPosts updateNewPostText={onPostChange}
-                 addPost={addPost}
-                 posts={state.profilePage.posts}
-                 newPostText={state.profilePage.newPostText}
-        />
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    let state = store.getState();
+
+                    let addPost = () => {
+                        store.dispatch(addPostAC());
+                    }
+
+                    let onPostChange = (text: string) => {
+                        let action = updateNewPostTextAC(text)
+                        store.dispatch(action);
+                    }
+                    return <MyPosts
+                        updateNewPostText={onPostChange}
+                        addPost={addPost}
+                        posts={state.profilePage.posts}
+                        newPostText={state.profilePage.newPostText}
+                    />
+                }
+            }
+        </StoreContext.Consumer>
     );
 }
 
