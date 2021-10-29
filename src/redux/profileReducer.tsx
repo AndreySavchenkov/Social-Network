@@ -1,9 +1,24 @@
-import {ActionsTypes, ProfilePageType, RootStateType} from "./store";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-let initialState =  {
+export type ActionsTypes = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof updateNewMessageBodyCreator>
+
+export type ProfilePageType = {
+    posts: Array<PostType>,
+    newPostText: string,
+}
+export type PostType = {
+    id: number,
+    message: string,
+    likesCount: number,
+}
+
+let initialState:ProfilePageType = {
     posts: [
         {id: 1, message: "Hello everybody!!!)", likesCount: 12},
         {id: 2, message: "Yeah!", likesCount: 16},

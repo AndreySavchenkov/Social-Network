@@ -4,12 +4,13 @@ import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import {RootStateType, store} from "./redux/store";
 import {Provider} from "react-redux";
+import {AppStateType} from "./redux/redux-store";
+import {store} from './redux/redux-store'
 
 
 
-let rerenderedEntireThree = (state: RootStateType) => {
+let rerenderedEntireThree = (state: AppStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>

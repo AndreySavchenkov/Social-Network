@@ -19,7 +19,7 @@ export let store: StoreType = {
                 {id: 4, message: "You're interesting man but I want to sleep", likesCount: 10},
                 {id: 5, message: "It's my first post", likesCount: 22},
             ],
-            newPostText: 'it-camasutra.com'
+            newPostText: 'it-camasutra.com',
         },
         dialogPage: {
             messages: [
@@ -59,7 +59,7 @@ export let store: StoreType = {
 
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
+type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
@@ -68,24 +68,24 @@ export  type RootStateType = {
     profilePage: ProfilePageType,
     dialogPage: DialogPageType,
 }
-export type PostType = {
+type PostType = {
     id: number,
     message: string,
     likesCount: number,
 }
-export type MessageType = {
+ type MessageType = {
     id: number,
     message: string,
 }
-export type DialogType = {
+ type DialogType = {
     id: number,
     name: string,
 }
-export type ProfilePageType = {
+ type ProfilePageType = {
     posts: Array<PostType>,
     newPostText: string,
 }
-export type DialogPageType = {
+ type DialogPageType = {
     messages: Array<MessageType>,
     dialogs: Array<DialogType>,
     newMessageBody: string,
