@@ -17,7 +17,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.updateNewMessageBody(body);
     }
 
-    let dialogsElements = state.dialogs.map((d: { name: string; id: number; }) => <DialogItem name={d.name}
+    let dialogsElements = state.dialogs.map((d: { name: string; id: number; }) => <DialogItem name={d.name} key={d.id}
                                                                                               id={d.id}/>)
     let messagesElements = state.messages.map((m: { message: string; }) => <Message message={m.message}/>)
     let newMessageBody = state.newMessageBody
