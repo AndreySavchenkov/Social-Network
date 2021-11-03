@@ -15,6 +15,7 @@ export type usersType = {
 
 export type userType = {
     id: number,
+    photoUrl: string,
     fullName: string,
     status: string,
     followed: boolean,
@@ -28,34 +29,38 @@ export type userLocationType = {
 
 let initialState: usersType = {
     users: [
-        // {
-        //     id: 1,
-        //     fullName: "Andrey",
-        //     status: 'I am a boss',
-        //     followed: true,
-        //     location: {country: 'Belarus', city: 'Grodno',}
-        // },
-        // {
-        //     id: 2,
-        //     fullName: "Sasha",
-        //     status: 'I am a boss too',
-        //     followed: false,
-        //     location: {country: 'Russia', city: 'Moscow',}
-        // },
-        // {
-        //     id: 3,
-        //     fullName: "Masha",
-        //     status: 'I am a boss too',
-        //     followed: true,
-        //     location: {country: 'Poland', city: 'Warsaw',}
-        // },
-        // {
-        //     id: 4,
-        //     fullName: "Dima",
-        //     status: 'I am a boss too',
-        //     followed: false,
-        //     location: {country: 'Ukraine', city: 'Kiev',}
-        // },
+        {
+            id: 1,
+            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGb2pAloeJoZ0pYDp0TtfKNvjydz1Fbfq-8g&usqp=CAU',
+            fullName: "Andrey",
+            status: 'I am a boss',
+            followed: true,
+            location: {country: 'Belarus', city: 'Grodno',}
+        },
+        {
+            id: 2,
+            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGb2pAloeJoZ0pYDp0TtfKNvjydz1Fbfq-8g&usqp=CAU',
+            fullName: "Sasha",
+            status: 'I am a boss too',
+            followed: false,
+            location: {country: 'Russia', city: 'Moscow',}
+        },
+        {
+            id: 3,
+            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGb2pAloeJoZ0pYDp0TtfKNvjydz1Fbfq-8g&usqp=CAU',
+            fullName: "Masha",
+            status: 'I am a boss too',
+            followed: true,
+            location: {country: 'Poland', city: 'Warsaw',}
+        },
+        {
+            id: 4,
+            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGb2pAloeJoZ0pYDp0TtfKNvjydz1Fbfq-8g&usqp=CAU',
+            fullName: "Dima",
+            status: 'I am a boss too',
+            followed: false,
+            location: {country: 'Ukraine', city: 'Kiev',}
+        },
 
     ],
 }

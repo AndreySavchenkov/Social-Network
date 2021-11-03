@@ -6,11 +6,13 @@ import {followAC, setUsersAC, unfollowAC, userType} from "../../redux/usersReduc
 import {Dispatch} from "redux";
 
 type MapStateToPropsType = {
-
+    users: Array<userType>
 }
 
 type MapDispatchToPropsType = {
-
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: Array<userType>) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType;
