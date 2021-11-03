@@ -1,40 +1,94 @@
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof updateNewMessageBodyCreator>
+export type usersReducerActionsTypes = ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
-export type ProfilePageType = {
-    posts: Array<PostType>,
-    newPostText: string,
+
+export type usersType = {
+    users: Array<userType>
 }
-export type PostType = {
+
+export type userType = {
     id: number,
-    message: string,
-    likesCount: number,
+    fullName: string,
+    status: string,
+    followed: boolean,
+    location: userLocationType,
 }
 
-let initialState: any = {
+export type userLocationType = {
+    country: string,
+    city: string,
+}
+
+let initialState: usersType = {
     users: [
-        {id: 1, fullName: "Andrey", status: 'I am a boss', follow: true, location: {country: 'Belarus', city: 'Grodno',},  linkPhoto: ''},
-        {id: 2, fullName: "Sasha", status: 'I am a boss too', follow: true, location: {country: 'Russia', city: 'Moscow',},  linkPhoto: ''},
-        {id: 3, fullName: "Masha", status: 'I am a boss too', follow: true, location: {country: 'Poland', city: 'Warsaw',},  linkPhoto: ''},
-        {id: 4, fullName: "Dima", status: 'I am a boss too', follow: true, location: {country: 'Ukraine', city: 'Kiev',},  linkPhoto: ''},
+        // {
+        //     id: 1,
+        //     fullName: "Andrey",
+        //     status: 'I am a boss',
+        //     followed: true,
+        //     location: {country: 'Belarus', city: 'Grodno',}
+        // },
+        // {
+        //     id: 2,
+        //     fullName: "Sasha",
+        //     status: 'I am a boss too',
+        //     followed: false,
+        //     location: {country: 'Russia', city: 'Moscow',}
+        // },
+        // {
+        //     id: 3,
+        //     fullName: "Masha",
+        //     status: 'I am a boss too',
+        //     followed: true,
+        //     location: {country: 'Poland', city: 'Warsaw',}
+        // },
+        // {
+        //     id: 4,
+        //     fullName: "Dima",
+        //     status: 'I am a boss too',
+        //     followed: false,
+        //     location: {country: 'Ukraine', city: 'Kiev',}
+        // },
 
     ],
-    newPostText: 'it-kamasutra.com'
 }
 
-export const usersReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+export const usersReducer = (state: usersType = initialState, action: usersReducerActionsTypes) => {
     switch (action.type) {
+        case FOLLOW:
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userId) {
+                        return {...u, followed: true}
+                    }
+                    return u;
+                })
+            }
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userId) {
+                        return {...u, followed: false}
+                    }
+                    return u;
+                })
+            }
+        case SET_USERS:
+            return {...state, users: [...state.users, ...action.users]}
         default:
             return state;
     }
 }
 
-export const addPostAC = () => ({type: ADD_POST} as const);
-export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
+export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: Array<userType>) => ({type: SET_USERS, users} as const)
