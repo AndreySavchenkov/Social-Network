@@ -15,11 +15,16 @@ export type usersType = {
 
 export type userType = {
     id: number,
-    photoUrl: string,
-    fullName: string,
+    photos: photosType,
+    name: string,
     status: string,
     followed: boolean,
     location: userLocationType,
+}
+
+export type photosType = {
+    small?: string,
+    large?: string
 }
 
 export type userLocationType = {
