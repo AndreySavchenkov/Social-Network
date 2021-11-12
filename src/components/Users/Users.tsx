@@ -7,7 +7,7 @@ import userPhoto from '../../assets/images/userImage.png'
 class Users extends React.Component<any, any> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
             })
@@ -15,13 +15,17 @@ class Users extends React.Component<any, any> {
 
 
     render() {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+        
+
         return <div>
             <div >
-                <span>1</span>
-                <span className={styles.selectedPage}>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
+                {pages.map(p => <span className={this.props.currentPage === p ? styles.selectedPage : ''}
+                onClick={() => { this.props.setCurentPage(p) }}>{p}</span>)}
             </div>
             {this.props.users.map((u: { id: React.Key | null | undefined; photos: { small: string | null | undefined; }; followed: any; name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; status: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) =>
                 <div key={u.id}>
