@@ -10,6 +10,15 @@ class Users extends React.Component<any, any> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
             })
     }
 
@@ -25,7 +34,7 @@ class Users extends React.Component<any, any> {
         return <div>
             <div >
                 {pages.map(p => <span className={this.props.currentPage === p ? styles.selectedPage : ''}
-                onClick={() => { this.props.setCurentPage(p) }}>{p}</span>)}
+                onClick={() => { this.onPageChanged(p) }}>{p}</span>)}
             </div>
             {this.props.users.map((u: { id: React.Key | null | undefined; photos: { small: string | null | undefined; }; followed: any; name: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; status: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) =>
                 <div key={u.id}>
