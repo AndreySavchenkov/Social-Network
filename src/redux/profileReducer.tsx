@@ -2,15 +2,18 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer"
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
+    | ReturnType<typeof setUserProfile>
 
 export type ProfilePageType = {
     posts: Array<PostType>,
     newPostText: string,
+    profile: any,
 }
 export type PostType = {
     id: number,
@@ -26,7 +29,8 @@ let initialState: ProfilePageType = {
         {id: 4, message: "You're interesting man but I want to sleep", likesCount: 10},
         {id: 5, message: "It's my first post", likesCount: 22},
     ],
-    newPostText: 'it-camasutra.com'
+    newPostText: 'it-camasutra.com',
+    profile: {},
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
@@ -47,6 +51,10 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state,
                 newPostText: action.newText,
             }
+            case SET_USER_PROFILE:
+            return {
+                ...state,profile: action.profile
+            }
         default:
             return state;
     }
@@ -54,3 +62,4 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 export const addPostAC = () => ({type: ADD_POST} as const);
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
+export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);

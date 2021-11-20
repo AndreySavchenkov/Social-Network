@@ -2,11 +2,15 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
+export type ProfileType = {
+    profile: any
+}
 
-export const Profile = () => {
+
+export const Profile = (props: ProfileType) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     );
