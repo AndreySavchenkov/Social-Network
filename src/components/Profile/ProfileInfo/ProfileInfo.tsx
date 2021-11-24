@@ -1,9 +1,10 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
+import {ProfileType} from "../../../redux/profileReducer";
 
 type ProfileInfo = {
-    profile: any,
+    profile: ProfileType,
 }
 
 
@@ -19,7 +20,9 @@ const ProfileInfo = (props: ProfileInfo) => {
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} />
-                ava+description
+                <p><b>Имя:</b> {props.profile.fullName}</p>
+                <p><b>Обо мне:</b> {props.profile.aboutMe}</p>
+                <p><b>Что ищу:</b> {props.profile.lookingForAJobDescription}</p>
             </div>
         </div>
     )
