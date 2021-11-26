@@ -1,44 +1,53 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {ProfileType, setUserProfile} from "../../redux/profileReducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
-
-
-
-type IProps = {
-    setUserProfile: (response: {} ) => void
+type MapStatePropsType = {
     profile: ProfileType
 }
 
-class ProfileContainer extends React.Component<IProps>{
+type MapDispatchPropsType = {
+    setUserProfile: (profile: {}) => void
+}
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if(!userId) {
-            userId = 2;
+type OwnPropsType = MapStatePropsType & MapDispatchPropsType
+
+type PathParamType = {
+    userId: string
+}
+
+
+type PropsType = RouteComponentProps<PathParamType> & OwnPropsType
+
+export const ProfileContainer = (props: PropsType) => {
+
+    useEffect(() => {
+        let userId = props.match.params.userId;
+        if (!userId) {
+            userId = '2';
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
-                this.props.setUserProfile(response.data);
+                props.setUserProfile(response.data);
             });
-    }
+    }, [])
 
 
-    render(){
-        return (
-           <Profile profile={this.props.profile}/>
-        );
-    }
+
+    return (
+        <Profile profile={props.profile}/>
+    );
+
 
 };
 
-let mapStateToProps = (state: AppStateType) => ({
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile
 })
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default  connect(mapStateToProps,{setUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
