@@ -7,7 +7,7 @@ export type NavbarType = {
 
 }
 
-export const Navbar: React.FC<NavbarType> = (props) => {
+export const Navbar: React.FC<NavbarType> = () => {
 
     return (
         <nav className={s.nav}>

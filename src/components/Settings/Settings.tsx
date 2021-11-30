@@ -5,7 +5,7 @@ type settingsPropsType = {
 
 }
 
-export const Settings = (props: settingsPropsType) => {
+export const Settings: React.FC<settingsPropsType> = (props ) => {
     return (
         <div>
             Settings
@@ -13,4 +13,3 @@ export const Settings = (props: settingsPropsType) => {
     );
 }
 
-export default Settings;

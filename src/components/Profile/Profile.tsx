@@ -8,7 +8,7 @@ export type ProfileCType = {
 }
 
 
-export const Profile = (props: ProfileCType) => {
+export const Profile: React.FC<ProfileCType> = (props) => {
 
     return (
         <div>

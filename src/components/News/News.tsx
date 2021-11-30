@@ -5,7 +5,7 @@ type newsPropsType = {
 
 }
 
-export  const News = (props: newsPropsType) => {
+export  const News:React.FC<newsPropsType> = () => {
     return (
         <div>
             News
