@@ -15,10 +15,10 @@ export const usersAPI = {
     getAuth(){
         return instance.get(`auth/me`)
     },
-    setFollow(id: number){
+    follow(id: number){
         return instance.post(`follow/${id}`)
     },
-    setUnfollow(id: number){
+    unfollow(id: number){
         return instance.delete(`follow/${id}`)
     }
 }

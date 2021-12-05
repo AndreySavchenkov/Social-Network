@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow, getUsers,
+    follow, getFollow, getUnfollow, getUsers,
     setCurrentPage, toggleIsFollowing,
     unfollow,
     userType
@@ -28,6 +28,8 @@ type MapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean, userId: number) => void
+    getFollow: (userId: number) => void
+    getUnfollow: (userId: number) => void
 }
 
 //export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -55,6 +57,8 @@ class UsersContainer extends React.Component<any, any> {
                    unfollow={this.props.unfollow}
                    toggleIsFollowing={this.props.toggleIsFollowing}
                    followingInProgress={this.props.followingInProgress}
+                   getFollow={this.props.getFollow}
+                   getUnfollow={this.props.getUnfollow}
             />
         </>
 
@@ -100,6 +104,7 @@ export default connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
-    toggleIsFollowing,
-    getUsers
+    getUsers,
+    getFollow,
+    getUnfollow,
 })(UsersContainer)

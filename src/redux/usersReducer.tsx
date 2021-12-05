@@ -117,3 +117,27 @@ export const getUsers = (currentPage: number, pageSize: number) => {
         })
     }
 }
+
+export const getUnfollow = ((userId: number) => {
+    return (dispatch: any) => {
+         dispatch(toggleIsFollowing(true, userId))
+         usersAPI.unfollow(userId).then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollow(userId))
+                }
+            dispatch(toggleIsFollowing(false, userId))
+            })
+    }
+});
+
+export const getFollow = (userId: number) => {
+    return (dispatch: any) => {
+       dispatch(toggleIsFollowing(true,userId))
+        usersAPI.follow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(toggleIsFollowing(false, userId))
+        })
+    }
+}
