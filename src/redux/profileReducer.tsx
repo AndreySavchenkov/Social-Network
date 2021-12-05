@@ -1,4 +1,5 @@
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -35,7 +36,7 @@ export type ProfileType = {
     lookingForAJob: true,
     lookingForAJobDescription: "",
     fullName: "",
-    userId: number,
+    userId: "",
     photos: {
         small: "",
         large: ""
@@ -65,7 +66,7 @@ let initialState: ProfilePageType = {
         lookingForAJob: true,
         lookingForAJobDescription: "",
         fullName: "",
-        userId: 2,
+        userId: "",
         photos: {
             small: "",
             large: ""
@@ -102,4 +103,10 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 export const addPostAC = () => ({type: ADD_POST} as const);
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
-export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
+const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
+
+export const getUserProfile = (userId: any) => (dispatch: any) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
+}
