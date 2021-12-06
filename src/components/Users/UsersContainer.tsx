@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     follow, getFollow, getUnfollow, getUsers,
-    setCurrentPage, toggleIsFollowing,
+    setCurrentPage,
     unfollow,
     userType
 } from "../../redux/usersReducer";
@@ -21,16 +21,16 @@ type MapStateToPropsType = {
 
 }
 
-type MapDispatchToPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<userType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean, userId: number) => void
-    getFollow: (userId: number) => void
-    getUnfollow: (userId: number) => void
-}
+// type MapDispatchToPropsType = {
+//     follow: (userId: number) => void
+//     unfollow: (userId: number) => void
+//     setUsers: (users: Array<userType>) => void
+//     setCurrentPage: (pageNumber: number) => void
+//     setTotalUsersCount: (totalCount: number) => void
+//     toggleIsFetching: (isFetching: boolean, userId: number) => void
+//     getFollow: (userId: number) => void
+//     getUnfollow: (userId: number) => void
+// }
 
 //export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType;
 

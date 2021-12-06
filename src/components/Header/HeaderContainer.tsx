@@ -1,8 +1,7 @@
 import React, {useEffect} from "react";
 import Header from "./Header";
-import {getAuthUserData, setAuthUserData} from "../../redux/auth-reducer";
+import {getAuthUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 
@@ -11,8 +10,8 @@ type MapStateToPropsType = {
     isAuth: boolean,
     login: string,
 }
-type MapDispatchToPropsType ={
-    setAuthUser: (id: number, email: string, login: string) => void
+type MapDispatchToPropsType = {
+
 }
 
 export type HeaderPropsType = MapStateToPropsType  & MapDispatchToPropsType;
@@ -25,7 +24,7 @@ export const HeaderContainer  = (props: any) => {
     },[])
 
     return (
-        <Header login={props.login} isAuth={props.isAuth} setAuthUser={props.setAuthUser}/>
+        <Header login={props.login} isAuth={props.isAuth}/>
     );
 }
 
@@ -34,13 +33,13 @@ const MapStateToProps = (state:AppStateType ):MapStateToPropsType => ({
     login: state.auth.login,
 })
 
-let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        setAuthUser: (id: number, email: string, login: string) => {
-            dispatch(setAuthUserData(id, email, login));
-        },
-    }
-}
+// let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//     return {
+//         setAuthUser: (id: number, email: string, login: string) => {
+//             dispatch(setAuthUserData(id, email, login));
+//         },
+//     }
+// }
 
-export const HeaderContainerWithConnect = connect (MapStateToProps, MapDispatchToProps)(HeaderContainer)
+export const HeaderContainerWithConnect = connect (MapStateToProps, {getAuthUserData})(HeaderContainer)
 

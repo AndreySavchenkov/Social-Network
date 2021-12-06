@@ -1,5 +1,6 @@
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
 import {usersAPI} from "../api/api";
+import {getAuthUserData} from "./auth-reducer";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -93,6 +94,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 newPostText: action.newText,
             }
             case SET_USER_PROFILE:
+
             return {
                 ...state,profile: action.profile
             }
@@ -105,8 +107,10 @@ export const addPostAC = () => ({type: ADD_POST} as const);
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
 const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
 
-export const getUserProfile = (userId: any) => (dispatch: any) => {
+export const getUserProfile = (userId: string) => (dispatch: any) => {
+
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))
     })
+
 }

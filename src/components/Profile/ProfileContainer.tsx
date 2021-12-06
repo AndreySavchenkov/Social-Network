@@ -33,7 +33,6 @@ export const ProfileContainer = (props: PropsType) => {
 
     }, [])
 
-debugger
 
     return (
         <Profile profile={props.profile}/>

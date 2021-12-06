@@ -1,4 +1,7 @@
 import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
+import {AppStateType} from "./redux-store";
+
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -107,8 +110,11 @@ export const toggleIsFollowing = (isFetching: boolean, userId: number) => ({
     isFetching, userId
 } as const)
 
+type DispatchType = Dispatch<usersReducerActionsTypes>
+type GetStateType =  () => AppStateType
+
 export const getUsers = (currentPage: number, pageSize: number) => {
-   return (dispatch: any) => {
+   return (dispatch: DispatchType, getState: GetStateType) => {
         dispatch(toggleIsFetching(true));
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false));
@@ -119,7 +125,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 }
 
 export const getUnfollow = ((userId: number) => {
-    return (dispatch: any) => {
+    return (dispatch: DispatchType, getState: GetStateType) => {
          dispatch(toggleIsFollowing(true, userId))
          usersAPI.unfollow(userId).then(response => {
                 if (response.data.resultCode === 0) {
@@ -131,7 +137,7 @@ export const getUnfollow = ((userId: number) => {
 });
 
 export const getFollow = (userId: number) => {
-    return (dispatch: any) => {
+    return (dispatch: DispatchType, getState: GetStateType) => {
        dispatch(toggleIsFollowing(true,userId))
         usersAPI.follow(userId).then(response => {
             if (response.data.resultCode === 0) {
