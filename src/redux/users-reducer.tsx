@@ -124,7 +124,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     }
 }
 
-export const getUnfollow = ((userId: number) => {
+export const getUnfollow = (userId: number) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
         dispatch(toggleIsFollowing(true, userId))
         usersAPI.unfollow(userId).then(response => {
@@ -134,7 +134,7 @@ export const getUnfollow = ((userId: number) => {
             dispatch(toggleIsFollowing(false, userId))
         })
     }
-});
+};
 
 export const getFollow = (userId: number) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
