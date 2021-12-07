@@ -92,11 +92,11 @@ export const usersReducer = (state: usersType = initialState, action: usersReduc
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId] :
-            state.followingInProgress.filter(id => id !== action.userId)
+                    state.followingInProgress.filter(id => id !== action.userId)
+            }
+        default:
+            return state;
     }
-default:
-    return state;
-}
 }
 
 export const follow = (userId: number) => ({type: FOLLOW, userId} as const)
@@ -111,10 +111,10 @@ export const toggleIsFollowing = (isFetching: boolean, userId: number) => ({
 } as const)
 
 type DispatchType = Dispatch<usersReducerActionsTypes>
-type GetStateType =  () => AppStateType
+type GetStateType = () => AppStateType
 
 export const getUsers = (currentPage: number, pageSize: number) => {
-   return (dispatch: DispatchType, getState: GetStateType) => {
+    return (dispatch: DispatchType, getState: GetStateType) => {
         dispatch(toggleIsFetching(true));
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false));
@@ -126,19 +126,19 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 
 export const getUnfollow = ((userId: number) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
-         dispatch(toggleIsFollowing(true, userId))
-         usersAPI.unfollow(userId).then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unfollow(userId))
-                }
+        dispatch(toggleIsFollowing(true, userId))
+        usersAPI.unfollow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollow(userId))
+            }
             dispatch(toggleIsFollowing(false, userId))
-            })
+        })
     }
 });
 
 export const getFollow = (userId: number) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
-       dispatch(toggleIsFollowing(true,userId))
+        dispatch(toggleIsFollowing(true, userId))
         usersAPI.follow(userId).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(follow(userId))

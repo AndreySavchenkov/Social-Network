@@ -1,12 +1,14 @@
-import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 import {usersAPI} from "../api/api";
-import {getAuthUserData} from "./auth-reducer";
+import {Dispatch} from "redux";
+import {AppStateType} from "./redux-store";
+
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
+export type ProfileActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
@@ -75,7 +77,7 @@ let initialState: ProfilePageType = {
     },
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes):ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionsTypes):ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -107,7 +109,10 @@ export const addPostAC = () => ({type: ADD_POST} as const);
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
 const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
 
-export const getUserProfile = (userId: string) => (dispatch: any) => {
+type DispatchType = Dispatch<ProfileActionsTypes>
+type GetStateType = () => AppStateType
+
+export const getUserProfile = (userId: string) => (dispatch: DispatchType, getState: GetStateType) => {
 
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))

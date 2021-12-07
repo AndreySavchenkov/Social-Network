@@ -1,4 +1,4 @@
-import {addPostAC, updateNewPostTextAC} from "./profileReducer";
+import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';

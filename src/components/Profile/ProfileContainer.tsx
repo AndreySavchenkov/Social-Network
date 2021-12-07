@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Profile} from "./Profile";
-import {getUserProfile, ProfileType} from "../../redux/profileReducer";
+import {getUserProfile, ProfileType} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";

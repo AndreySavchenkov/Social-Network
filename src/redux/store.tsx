@@ -1,5 +1,5 @@
-import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
-import {dialogsReducer, sendMessageCreator, updateNewMessageBodyCreator} from "./dialogsReducer";
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {dialogsReducer, sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 
 export type StoreType = {
     _state: RootStateType
