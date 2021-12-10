@@ -54,7 +54,7 @@ let initialState: usersType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: [2, 3],
+    followingInProgress: [2,3],
 }
 
 export const usersReducer = (state: usersType = initialState, action: usersReducerActionsTypes) => {

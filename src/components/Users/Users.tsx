@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./users.module.scss";
 import userPhoto from "../../assets/images/userImage.png";
-import {userType} from "../../redux/users-reducer";
+import {getFollow, getUnfollow, usersReducerActionsTypes, userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {Dispatch} from "redux";
+import {ThunkDispatch} from "redux-thunk";
+import {AppStateType} from "../../redux/redux-store";
 
 
 
@@ -11,16 +15,17 @@ export type UsersType = {
     pageSize: number
     currentPage: number
     users: Array<userType>
+    followingInProgress: Array<number>
     onPageChanged: (pageNumber: number) => void
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    toggleIsFollowing: (isFetching: boolean, userId: number) => void
-    followingInProgress: []
-    getFollow: (userId: number) => void
-    getUnfollow: (userId: number) => void
 }
 
 export const Users: React.FC<UsersType> = (props) => {
+
+    const dispatch = useDispatch<Dispatch<usersReducerActionsTypes>>()
+
+    type appDispatch = ThunkDispatch<AppStateType,any,usersReducerActionsTypes>
+
+    const thunkDispatch: appDispatch = useDispatch();
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
@@ -48,9 +53,9 @@ export const Users: React.FC<UsersType> = (props) => {
                 </div>
                 <div>
                     {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {props.getUnfollow(u.id)}}>Unfollow</button>
+                                          onClick={() => {thunkDispatch(getUnfollow(u.id))}}>Unfollow</button>
                         : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                  onClick={() => {props.getFollow(u.id)}}>Follow</button>}
+                                  onClick={() => {thunkDispatch(getFollow(u.id))}}>Follow</button>}
                 </div>
             </span>
                     <span>

@@ -1,14 +1,17 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, {useEffect} from "react";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     follow, getFollow, getUnfollow, getUsers,
     setCurrentPage,
-    unfollow,
+    unfollow, usersReducerActionsTypes,
     userType
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {usersPage} from "../../redux/selectors.";
+import {Dispatch} from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
 
 type MapStateToPropsType = {
@@ -18,7 +21,6 @@ type MapStateToPropsType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: Array<number>,
-
 }
 
 // type MapDispatchToPropsType = {
@@ -34,48 +36,63 @@ type MapStateToPropsType = {
 
 //export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
-class UsersContainer extends React.Component<any, any> {
+export const UsersContainer: React.FC = () => {
 
-    componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+    const {
+        users,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        isFetching,
+        followingInProgress,
+    } = useSelector(usersPage)
+
+    type appDispatch = ThunkDispatch<AppStateType,any,usersReducerActionsTypes>
+
+    const thunkDispatch: appDispatch = useDispatch();
+
+    useEffect(() => {
+        thunkDispatch(getUsers(currentPage, pageSize))
+    },[])
+
+    const onPageChanged = (pageNumber: number) => {
+        thunkDispatch(getUsers(pageNumber, pageSize))
     }
 
-    onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
-    }
 
-    render() {
         return <>
-            {this.props.isFetching ?
+            {isFetching ?
                 <Preloader/> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
-                   pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   users={this.props.users}
-                   onPageChanged={this.onPageChanged}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}
-                   toggleIsFollowing={this.props.toggleIsFollowing}
-                   followingInProgress={this.props.followingInProgress}
-                   getFollow={this.props.getFollow}
-                   getUnfollow={this.props.getUnfollow}
+            <Users totalUsersCount={totalUsersCount}
+                   pageSize={pageSize}
+                   currentPage={currentPage}
+                   users={users}
+                   onPageChanged={onPageChanged}
+                   followingInProgress={followingInProgress}
+
+                   // follow={this.props.follow}
+                   // unfollow={this.props.unfollow}
+                   // toggleIsFollowing={this.props.toggleIsFollowing}
+                   //
+                   // getFollow={this.props.getFollow}
+                   // getUnfollow={this.props.getUnfollow}
             />
         </>
 
-    }
+
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-
-    }
-}
+// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress,
+//
+//     }
+// }
 
 // const maDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //     return {
@@ -100,11 +117,11 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 //     }
 // }
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    getUsers,
-    getFollow,
-    getUnfollow,
-})(UsersContainer)
+// export default connect(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setCurrentPage,
+//     getUsers,
+//     getFollow,
+//     getUnfollow,
+// })(UsersContainer)
