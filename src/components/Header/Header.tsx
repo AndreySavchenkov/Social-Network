@@ -1,9 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import s from './Header.module.css';
-import {HeaderPropsType} from "./HeaderContainer";
 
-const Header = (props: HeaderPropsType) => {
+type HeaderPropsType = {
+    login: string,
+    isAuth: boolean
+}
+
+const Header: React.FC<HeaderPropsType> = (props) => {
 
     return (
         <header className={s.header}>

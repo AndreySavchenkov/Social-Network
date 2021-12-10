@@ -3,7 +3,7 @@ import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from 'react-router-dom';
 import UsersContainer from "./components/Users/UsersContainer";
-import {HeaderContainerWithConnect} from "./components/Header/HeaderContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
@@ -15,7 +15,7 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <HeaderContainerWithConnect/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs/>}/>

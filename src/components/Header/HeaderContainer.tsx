@@ -1,45 +1,25 @@
 import React, {useEffect} from "react";
 import Header from "./Header";
 import {getAuthUserData} from "../../redux/auth-reducer";
-import {AppStateType} from "../../redux/redux-store";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
+import {auth} from "../../redux/selectors.";
 
 
+export const HeaderContainer: React.FC = () => {
 
-type MapStateToPropsType = {
-    isAuth: boolean,
-    login: string,
-}
-type MapDispatchToPropsType = {
-
-}
-
-export type HeaderPropsType = MapStateToPropsType  & MapDispatchToPropsType;
-
-
-export const HeaderContainer  = (props: any) => {
+    const {
+        isAuth,
+        login,
+    } = useSelector(auth)
 
     useEffect(() => {
-       getAuthUserData()
-    },[])
+        getAuthUserData()
+    }, [])
 
     return (
-        <Header login={props.login} isAuth={props.isAuth}/>
+        <Header login={login} isAuth={isAuth}/>
     );
 }
 
-const MapStateToProps = (state:AppStateType ):MapStateToPropsType => ({
-    isAuth: state.auth.isAuth,
-    login: state.auth.login,
-})
 
-// let MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         setAuthUser: (id: number, email: string, login: string) => {
-//             dispatch(setAuthUserData(id, email, login));
-//         },
-//     }
-// }
-
-export const HeaderContainerWithConnect = connect (MapStateToProps, {getAuthUserData})(HeaderContainer)
 

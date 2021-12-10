@@ -1,3 +1,4 @@
-import {RootStateType} from "./store";
+import {AppStateType} from "./redux-store";
 
-export const dialogsPage = (state: RootStateType) => state.dialogPage
+export const dialogsPage = (state: AppStateType) => state.dialogPage
+export const auth = (state: AppStateType) => state.auth
