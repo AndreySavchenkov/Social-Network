@@ -4,8 +4,8 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from 'react-router-dom';
 import UsersContainer from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Dialogs} from "./components/Dialogs/Dialogs";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App: React.FC = () => {

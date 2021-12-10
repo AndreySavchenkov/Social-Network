@@ -1,39 +1,42 @@
 import React, {useEffect} from "react";
 import {Profile} from "./Profile";
-import {getUserProfile, ProfileType} from "../../redux/profile-reducer";
-import {connect} from "react-redux";
+import {getUserProfile, ProfileActionsTypes} from "../../redux/profile-reducer";
+import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {profilePage} from "../../redux/selectors.";
+import {ThunkDispatch} from "redux-thunk";
 
-type MapDispatchToPropsType = {
-    getUserProfile: (userId: string) => any
-}
-type MapStatePropsType = {
-    profile: ProfileType
-}
-type OwnPropsType = MapStatePropsType & MapDispatchToPropsType
+
+type AppDispatch = ThunkDispatch<AppStateType, any, ProfileActionsTypes>;
+
 type PathParamType = {
     userId: string
 }
-type PropsType = RouteComponentProps<PathParamType> & OwnPropsType
+type PropsType = RouteComponentProps<PathParamType>
 
-export const ProfileContainer = (props: PropsType) => {
+const ProfileContainer: React.FC<PropsType> = (props) => {
+
+    const {
+        profile
+    } = useSelector(profilePage)
+
+    const dispatch: AppDispatch = useDispatch();
+
+
     useEffect(() => {
         let userId = props.match.params.userId;
         if (!userId) {
             userId = '2';
         }
-        props.getUserProfile(userId)
+        dispatch(getUserProfile(userId))
 
     }, [])
+
     return (
-        <Profile profile={props.profile}/>
+        <Profile profile={profile}/>
     );
 };
 
-let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    profile: state.profilePage.profile
-})
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+export default withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);
