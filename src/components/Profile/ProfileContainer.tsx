@@ -39,4 +39,3 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 };
 
 export default withRouter(ProfileContainer)
-

@@ -1,13 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import s from './Navbar.module.css';
 
 
-export type NavbarType = {
-
-}
-
-export const Navbar: React.FC<NavbarType> = () => {
+export const Navbar: React.FC = () => {
 
     return (
         <nav className={s.nav}>
@@ -29,7 +25,6 @@ export const Navbar: React.FC<NavbarType> = () => {
             <div className={s.item}>
                 <NavLink to='/users' activeClassName={s.activeLink}>Users</NavLink>
             </div>
-
         </nav>
     );
 }

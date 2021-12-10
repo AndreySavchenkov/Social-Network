@@ -1,11 +1,7 @@
 import React from "react";
-import s from './News.module.css'
 
-type newsPropsType = {
 
-}
-
-export  const News:React.FC<newsPropsType> = () => {
+export const News: React.FC = () => {
     return (
         <div>
             News
