@@ -5,8 +5,8 @@ import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
 import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {auth, dialogsPage} from "../../redux/selectors.";
-import {Redirect} from "react-router-dom";
+import {dialogsPage} from "../../redux/selectors.";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 export const Dialogs: React.FC = () => {
@@ -18,10 +18,6 @@ export const Dialogs: React.FC = () => {
         dialogs,
         newMessageBody,
     } = useSelector(dialogsPage)
-
-    const {
-        isAuth
-    } = useSelector(auth)
 
 
     let onSendMessageClick = () => {
@@ -37,7 +33,6 @@ export const Dialogs: React.FC = () => {
                                                                                         id={d.id}/>)
     let messagesElements = messages.map((m: { message: string; }) => <Message message={m.message}/>)
 
-    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div>
@@ -63,3 +58,4 @@ export const Dialogs: React.FC = () => {
     );
 }
 
+export let DialogsRedirect = WithAuthRedirect(Dialogs)

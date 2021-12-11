@@ -3,9 +3,10 @@ import {Profile} from "./Profile";
 import {getUserProfile, ProfileActionsTypes} from "../../redux/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
-import {auth, profilePage} from "../../redux/selectors.";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {profilePage} from "../../redux/selectors.";
 import {ThunkDispatch} from "redux-thunk";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type AppDispatch = ThunkDispatch<AppStateType, any, ProfileActionsTypes>;
@@ -21,9 +22,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         profile
     } = useSelector(profilePage)
 
-    const {
-        isAuth
-    } = useSelector(auth)
 
     const dispatch: AppDispatch = useDispatch();
 
@@ -37,11 +35,13 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 
     }, [])
 
-    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <Profile profile={profile}/>
     );
 };
 
-export default withRouter(ProfileContainer)
+
+export const ProfileRedirect = withRouter(WithAuthRedirect(ProfileContainer))
+
+
