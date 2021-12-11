@@ -5,7 +5,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {DialogsRedirect} from "./components/Dialogs/Dialogs";
-import {ProfileRedirect} from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Login} from "./components/Login/Login";
 
 
@@ -20,7 +20,7 @@ const App: React.FC = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsRedirect/>}/>
-                    <Route path='/profile/:userId?' render={() => <ProfileRedirect/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     {/*<Route path='/news' render={() => <News/>}/>*/}
                     {/*<Route path='/music' render={() => <Music/>}/>*/}
                     {/*<Route path='/settings' render={() => <Settings/>}/>*/}

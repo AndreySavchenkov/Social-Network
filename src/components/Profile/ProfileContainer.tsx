@@ -7,6 +7,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {profilePage} from "../../redux/selectors.";
 import {ThunkDispatch} from "redux-thunk";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
 type AppDispatch = ThunkDispatch<AppStateType, any, ProfileActionsTypes>;
@@ -42,6 +43,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 };
 
 
-export const ProfileRedirect = withRouter(WithAuthRedirect(ProfileContainer))
+// export const ProfileRedirect = withRouter(WithAuthRedirect(ProfileContainer))
 
-
+export default compose<React.ComponentType>(withRouter, WithAuthRedirect)(ProfileContainer);
