@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import {dialogsPage} from "../../redux/selectors.";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -58,4 +58,5 @@ export const Dialogs: React.FC = () => {
     );
 }
 
-export let DialogsRedirect = WithAuthRedirect(Dialogs)
+export default compose<React.ComponentType>(WithAuthRedirect)(Dialogs);
+
