@@ -45,4 +45,4 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 
 // export const ProfileRedirect = withRouter(WithAuthRedirect(ProfileContainer))
 
-export default compose<React.ComponentType>(withRouter, WithAuthRedirect)(ProfileContainer);
+export default compose<React.ComponentType>(withRouter)(ProfileContainer);
