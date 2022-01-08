@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import s from './Header.module.css';
+import s from './Header.module.scss';
+import logoTurtle from './../../assets/images/turtleLogo.svg';
 
 type HeaderPropsType = {
     login: string,
@@ -12,7 +13,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
     return (
         <header className={s.header}>
             <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI5vFX9tv64JjrobsjPi_62hz5WBWU0FXjfA&usqp=CAU"
+                src={logoTurtle}
                 alt=""/>
             <div className={s.loginBlock}>
                 {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}

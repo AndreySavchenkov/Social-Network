@@ -1,0 +1,22 @@
+@import './../../assets/scss/variables';
+
+.header{
+  grid-area: h;
+  background-color: $main-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img{
+    margin-left: 20px;
+    width: 50px;
+  }
+
+  .loginBlock{
+    padding: 5px 10px;
+    background-color: $fifth-color;
+    margin-right: 20px;
+    color: $second-color;
+  }
+
+}
