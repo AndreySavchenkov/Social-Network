@@ -1,0 +1,17 @@
+@import './../../assets/scss/variables';
+
+.nav{
+  grid-area: n;
+  background-color:  $main-color;
+  padding: 20px;
+  min-height: 85vh;
+  .item a{
+    text-decoration: none;
+    color: $fourth-color;
+    font-size: 18px;
+    font-family: $textButton;
+    &.activeLink{
+      color: $second-color;
+    }
+  }
+}
