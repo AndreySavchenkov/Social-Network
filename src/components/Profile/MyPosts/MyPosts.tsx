@@ -1,5 +1,5 @@
 import React from "react";
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.scss';
 import Post from "./Post/Post";
 import {AppStateType} from "../../../redux/redux-store";
 import {useDispatch, useSelector} from "react-redux";
@@ -35,13 +35,11 @@ const MyPosts: React.FC = () => {
 
     return (
         <div className={s.postsBlock}>
-            <div>
+            <div className={s.createMessageBlock}>
                 <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
+                <button onClick={onAddPost}>Post</button>
             </div>
-            <button onClick={onAddPost}>Add Post</button>
-            <div>
-                <h3>New post</h3>
-            </div>
+            <h3 className={s.title}>My Little Posts:</h3>
             <div className={s.posts}>
                 {postsElements}
             </div>

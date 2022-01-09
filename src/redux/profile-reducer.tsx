@@ -47,11 +47,8 @@ export type ProfileType = {
 }
 let initialState: ProfilePageType = {
     posts: [
-        {id: 1, message: "Hello everybody!!!)", likesCount: 12},
-        {id: 2, message: "Yeah!", likesCount: 16},
-        {id: 3, message: "Zzzzz...", likesCount: 2},
-        {id: 4, message: "You're interesting man but I want to sleep", likesCount: 10},
-        {id: 5, message: "It's my first post", likesCount: 22},
+        {id: 1, message: "It's my first post", likesCount: 722},
+        {id: 2, message: "I love eating pizza and drinking Coca Cola!!!!111", likesCount: 312},
     ],
     newPostText: 'it-camasutra.com',
     profile: {

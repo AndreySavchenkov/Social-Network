@@ -2,6 +2,7 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfileType} from "../../redux/profile-reducer";
 import MyPosts from "./MyPosts/MyPosts";
+import style from './Profile.module.scss'
 
 
 export type ProfileCType = {
@@ -12,7 +13,7 @@ export type ProfileCType = {
 export const Profile: React.FC<ProfileCType> = (props) => {
 
     return (
-        <div>
+        <div className={style.container}>
             <ProfileInfo profile={props.profile}/>
             <MyPosts/>
         </div>

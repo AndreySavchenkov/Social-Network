@@ -5,7 +5,7 @@ import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
 import {compose, Dispatch} from "redux";
 import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import {dialogsPage} from "../../redux/selectors.";
+import {dialogsPage} from "../../redux/selectors";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 

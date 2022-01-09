@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Header from "./Header";
 import {authReducerActionsTypes, getAuthUserData} from "../../redux/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {auth} from "../../redux/selectors.";
+import {auth} from "../../redux/selectors";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../../redux/redux-store";
 

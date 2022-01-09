@@ -1,5 +1,7 @@
 import React from "react";
-import s from './Post.module.css';
+import s from './Post.module.scss';
+import avatar from './../../../../assets/images/avatarForMessage.jpeg'
+import heart from './../../../../assets/images/heart.png'
 
 type postPropsType = {
     message:string,
@@ -10,10 +12,14 @@ const Post = (props:postPropsType) => {
 
     return (
         <div className={s.item}>
-            <img src="https://www.vokrug.tv/pic/news/5/f/c/2/rsz300x300_5fc2879465129c11d65749ab9e3db7cc.jpg" alt=""/>
-            {props.message}
-            <div>
-                <span>like {props.likesCount}</span>
+            <div className={s.textContainer}>
+                <img src={avatar} alt=""/>
+                <div className={s.text}>
+                    {props.message}
+                </div>
+            </div>
+            <div className={s.likeContainer}>
+                <span> {props.likesCount} </span> <img src={heart} alt=""/>
             </div>
         </div>
     );

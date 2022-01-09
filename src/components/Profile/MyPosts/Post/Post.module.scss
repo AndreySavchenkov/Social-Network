@@ -1,0 +1,41 @@
+@import './../../../../assets/scss/variables';
+
+.item {
+  margin: 20px 0;
+  padding: 5px;
+  border: 3px solid $fourth-color;
+  border-radius: 10px;
+  max-width: 909px;
+  .textContainer {
+    display: flex;
+    align-items: center;
+    .text{
+      margin-left: 20px;
+      max-width: 909px;
+      height: 100%;
+      overflow:hidden;
+      color: $second-color;
+      font-family: $textButton;
+    }
+  }
+  .likeContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    img{
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    span{
+      font-family: $textButton;
+      color: $third-color;
+    }
+  }
+
+}
+.item img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}

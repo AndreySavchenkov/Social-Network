@@ -9,7 +9,7 @@ import {
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {usersPage} from "../../redux/selectors.";
+import {usersPage} from "../../redux/selectors";
 import {Dispatch} from "redux";
 import { ThunkDispatch } from "redux-thunk";
 

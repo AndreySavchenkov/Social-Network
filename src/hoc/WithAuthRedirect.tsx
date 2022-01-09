@@ -1,6 +1,6 @@
 import {Redirect} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {auth} from "../redux/selectors.";
+import {auth} from "../redux/selectors";
 import React, {ComponentType} from "react";
 
 export function WithAuthRedirect  <T>(Component: ComponentType<T>)  {

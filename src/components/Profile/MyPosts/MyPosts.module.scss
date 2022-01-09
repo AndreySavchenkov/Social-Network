@@ -1,0 +1,41 @@
+@import './../../../assets/scss/variables';
+
+.postsBlock {
+  padding: 10px;
+
+  .createMessageBlock {
+    padding-top: 40px;
+    padding-left: 25px;
+    display: flex;
+    textarea{
+      width: 450px;
+      height: 50px;
+      border-radius: 6px;
+    }
+    button{
+      height: 55px;
+      width: 70px;
+      margin-left: 20px;
+      font-family: $textButton;
+      font-weight: 700;
+      cursor: pointer;
+      background-color: $fourth-color;
+      color: $second-color;
+      border: none;
+      border-radius: 6px;
+    }
+  }
+  .title{
+    margin-top: 50px;
+    font-family: $textButton;
+    text-align: center;
+    color: $third-color;
+  }
+  .posts {
+    margin: 25px;
+  }
+}
+
+.posts {
+  padding-top: 20px;
+}
