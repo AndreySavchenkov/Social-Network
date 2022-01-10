@@ -1,4 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../ProfileContainer";
+import {updateStatus} from "../../../redux/profile-reducer";
 
 type ProfileStatusType = {
     status: string
@@ -6,23 +9,38 @@ type ProfileStatusType = {
 
 export const ProfileStatus: React.FC<ProfileStatusType> = (props) => {
 
+
+
+    const dispatch: AppDispatch = useDispatch();
+
     const [editMode, setEditMode] = useState(false);
+    const [localStatus, setLocalStatus] = useState(props.status)
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
     }
 
+
+
+    const onStatusChange = (e: any) => {
+        setLocalStatus(e.currentTarget.value)
+    }
+
+    useEffect(()=>{
+        dispatch(updateStatus(localStatus))
+    },[localStatus])
+
     return (
         <div>
             {!editMode &&
-                <div>
-                    <span onDoubleClick={toggleEditMode}>{props.status}</span>
-                </div>
+            <div>
+                <span onDoubleClick={toggleEditMode}>Status: {localStatus || '--------'} </span>
+            </div>
             }
             {editMode &&
-                <div>
-                    <input autoFocus={true} onBlur={toggleEditMode} type="text" value={props.status}/>
-                </div>
+            <div>
+                <input  autoFocus={true} onBlur={toggleEditMode} type="text" value={localStatus} onChange={onStatusChange}/>
+            </div>
             }
         </div>
 

@@ -7,6 +7,7 @@ import ninjaTurtle from './../../../assets/images/ninjaPicturejpg.jpg'
 
 type ProfileInfoType = {
     profile: ProfileType,
+    status: string,
 }
 
 
@@ -29,7 +30,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                     <p><span>Name:</span> {props.profile.fullName}</p>
                     <p><span>Obout me:</span> {props.profile.aboutMe}</p>
                     <p><span>Find:</span> {props.profile.lookingForAJobDescription}</p>
-                    <ProfileStatus status={"any status"}/>
+                    <ProfileStatus status={props.status}/>
                 </div>
                 <div className={s.imageContainer}>
                     <img src={props.profile.photos.large}/>

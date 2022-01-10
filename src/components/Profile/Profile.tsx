@@ -6,7 +6,8 @@ import style from './Profile.module.scss'
 
 
 export type ProfileCType = {
-    profile: ProfileType
+    profile: ProfileType,
+    status: string
 }
 
 
@@ -14,7 +15,7 @@ export const Profile: React.FC<ProfileCType> = (props) => {
 
     return (
         <div className={style.container}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status={props.status}/>
             <MyPosts/>
         </div>
     );

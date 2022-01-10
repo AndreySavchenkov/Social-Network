@@ -1,16 +1,15 @@
 import React, {useEffect} from "react";
 import {Profile} from "./Profile";
-import {getUserProfile, ProfileActionsTypes} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, ProfileActionsTypes} from "../../redux/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {profilePage} from "../../redux/selectors";
 import {ThunkDispatch} from "redux-thunk";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 
-type AppDispatch = ThunkDispatch<AppStateType, any, ProfileActionsTypes>;
+export type AppDispatch = ThunkDispatch<AppStateType, any, ProfileActionsTypes>;
 
 type PathParamType = {
     userId: string
@@ -20,7 +19,7 @@ type PropsType = RouteComponentProps<PathParamType>
 const ProfileContainer: React.FC<PropsType> = (props) => {
 
     const {
-        profile
+        profile, status
     } = useSelector(profilePage)
 
 
@@ -30,19 +29,21 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
     useEffect(() => {
         let userId = props.match.params.userId;
         if (!userId) {
-            userId = '11';
+            userId = '19640';
         }
+
         dispatch(getUserProfile(userId))
+
+        dispatch(getStatus(userId))
+
 
     }, [])
 
 
     return (
-        <Profile profile={profile}/>
+        <Profile profile={profile} status={status}/>
     );
 };
 
-
-// export const ProfileRedirect = withRouter(WithAuthRedirect(ProfileContainer))
 
 export default compose<React.ComponentType>(withRouter)(ProfileContainer);
