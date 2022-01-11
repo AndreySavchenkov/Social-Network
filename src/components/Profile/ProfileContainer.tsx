@@ -31,13 +31,12 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         if (!userId) {
             userId = '19640';
         }
-
         dispatch(getUserProfile(userId))
-
         dispatch(getStatus(userId))
 
+    })
 
-    }, [])
+
 
 
     return (

@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "./users.module.scss";
 import userPhoto from "../../assets/images/userImage.png";
-import {getFollow, getUnfollow, usersReducerActionsTypes, userType} from "../../redux/users-reducer";
+import {fiterType, getFollow, getUnfollow, usersReducerActionsTypes, userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../../redux/redux-store";
-
-
+import {UsersSearchForm} from "./UsersSearchForm";
 
 export type UsersType = {
     totalUsersCount: number
@@ -17,13 +16,14 @@ export type UsersType = {
     users: Array<userType>
     followingInProgress: Array<number>
     onPageChanged: (pageNumber: number) => void
+    onFilterChanged: (filter: fiterType) => void
 }
 
-export const Users: React.FC<UsersType> = (props) => {
+export const Users: React.FC<UsersType> = React.memo((props) => {
 
     const dispatch = useDispatch<Dispatch<usersReducerActionsTypes>>()
 
-    type appDispatch = ThunkDispatch<AppStateType,any,usersReducerActionsTypes>
+    type appDispatch = ThunkDispatch<AppStateType, any, usersReducerActionsTypes>
 
     const thunkDispatch: appDispatch = useDispatch();
 
@@ -35,6 +35,7 @@ export const Users: React.FC<UsersType> = (props) => {
 
     return (
         <div>
+            <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
             <div>
                 {pages.map(p => <span className={props.currentPage === p ? styles.selectedPage : ''}
                                       onClick={() => {
@@ -53,9 +54,13 @@ export const Users: React.FC<UsersType> = (props) => {
                 </div>
                 <div>
                     {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {thunkDispatch(getUnfollow(u.id))}}>Unfollow</button>
+                                          onClick={() => {
+                                              thunkDispatch(getUnfollow(u.id))
+                                          }}>Unfollow</button>
                         : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                  onClick={() => {thunkDispatch(getFollow(u.id))}}>Follow</button>}
+                                  onClick={() => {
+                                      thunkDispatch(getFollow(u.id))
+                                  }}>Follow</button>}
                 </div>
             </span>
                     <span>
@@ -71,4 +76,7 @@ export const Users: React.FC<UsersType> = (props) => {
                 </div>))}
         </div>
     )
-}
+})
+
+
+

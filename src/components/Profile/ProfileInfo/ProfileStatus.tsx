@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../ProfileContainer";
-import {updateStatus} from "../../../redux/profile-reducer";
+import {getStatus, updateStatus} from "../../../redux/profile-reducer";
 
 type ProfileStatusType = {
     status: string
@@ -19,8 +19,6 @@ export const ProfileStatus: React.FC<ProfileStatusType> = (props) => {
     const toggleEditMode = () => {
         setEditMode(!editMode)
     }
-
-
 
     const onStatusChange = (e: any) => {
         setLocalStatus(e.currentTarget.value)
