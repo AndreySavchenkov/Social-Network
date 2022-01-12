@@ -5,7 +5,7 @@ import React, {ComponentType} from "react";
 
 export function WithAuthRedirect  <T>(Component: ComponentType<T>)  {
 
-    let RedirectComponent:React.FC = (props) => {
+    let RedirectComponent:React.FC = React.memo((props) => {
 
         const {
             isAuth
@@ -13,7 +13,7 @@ export function WithAuthRedirect  <T>(Component: ComponentType<T>)  {
 
         if (!isAuth) return <Redirect to={'/login'}/>
         return <Component {...props as T}/>
-    }
+    })
 
     return RedirectComponent
 }

@@ -9,7 +9,7 @@ import {dialogsPage} from "../../redux/selectors";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
-export const Dialogs: React.FC = () => {
+export const Dialogs: React.FC = React.memo(() => {
 
     const dispatch = useDispatch<Dispatch<ActionsTypes>>()
 
@@ -56,7 +56,7 @@ export const Dialogs: React.FC = () => {
         </div>
 
     );
-}
+})
 
 export default compose<React.ComponentType>(WithAuthRedirect)(Dialogs);
 

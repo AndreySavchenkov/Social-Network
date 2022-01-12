@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import s from './Navbar.module.scss';
 
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC = React.memo(() => {
 
     return (
         <nav className={s.nav}>
@@ -27,5 +27,5 @@ export const Navbar: React.FC = () => {
             </div>
         </nav>
     );
-}
+})
 

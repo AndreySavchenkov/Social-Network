@@ -9,7 +9,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Login} from "./components/Login/Login";
 
 
-const App: React.FC = () => {
+const App: React.FC = React.memo(() => {
 
     // const state = props.store.getState();
 
@@ -31,6 +31,6 @@ const App: React.FC = () => {
         </BrowserRouter>
 
     );
-}
+})
 
 export default App;

@@ -11,7 +11,7 @@ export type ProfileCType = {
 }
 
 
-export const Profile: React.FC<ProfileCType> = (props) => {
+export const Profile: React.FC<ProfileCType> = React.memo((props) => {
 
     return (
         <div className={style.container}>
@@ -19,4 +19,4 @@ export const Profile: React.FC<ProfileCType> = (props) => {
             <MyPosts/>
         </div>
     );
-};
+})

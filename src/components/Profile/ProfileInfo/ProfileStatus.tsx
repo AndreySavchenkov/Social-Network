@@ -7,7 +7,7 @@ type ProfileStatusType = {
     status: string
 }
 
-export const ProfileStatus: React.FC<ProfileStatusType> = (props) => {
+export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => {
 
 
 
@@ -43,4 +43,4 @@ export const ProfileStatus: React.FC<ProfileStatusType> = (props) => {
         </div>
 
     )
-}
+})

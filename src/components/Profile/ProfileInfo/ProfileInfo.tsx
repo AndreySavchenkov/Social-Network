@@ -11,7 +11,7 @@ type ProfileInfoType = {
 }
 
 
-const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
+const ProfileInfo: React.FC<ProfileInfoType> = React.memo((props) => {
 
     const background = {
         backgroundImage: `url(${ninjaTurtle})`,
@@ -39,7 +39,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
             </div>
         </div>
     )
-}
+})
 
 
 export default ProfileInfo;

@@ -8,7 +8,7 @@ type HeaderPropsType = {
     isAuth: boolean
 }
 
-const Header: React.FC<HeaderPropsType> = (props) => {
+const Header: React.FC<HeaderPropsType> = React.memo((props) => {
 
     return (
         <header className={s.header}>
@@ -20,6 +20,6 @@ const Header: React.FC<HeaderPropsType> = (props) => {
             </div>
         </header>
     );
-}
+})
 
 export default Header;

@@ -9,7 +9,7 @@ import {addPostAC, ProfileActionsTypes, updateNewPostTextAC} from "../../../redu
 
 
 
-const MyPosts: React.FC = () => {
+const MyPosts: React.FC = React.memo(() => {
 
     const state = (state:AppStateType) => state.profilePage
 
@@ -45,6 +45,6 @@ const MyPosts: React.FC = () => {
             </div>
         </div>
     );
-}
+})
 
 export default MyPosts;

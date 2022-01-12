@@ -7,7 +7,7 @@ type dialogItemPropsType = {
     id: number
 }
 
-export const DialogItem: React.FC<dialogItemPropsType> = (props) => {
+export const DialogItem: React.FC<dialogItemPropsType> = React.memo((props) => {
 
     let path = '/dialogs/' + props.id
 
@@ -16,6 +16,6 @@ export const DialogItem: React.FC<dialogItemPropsType> = (props) => {
             <NavLink to={path}>{props.name}</NavLink>
         </div>
     )
-}
+})
 
 

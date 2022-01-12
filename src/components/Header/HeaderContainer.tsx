@@ -8,7 +8,7 @@ import {AppStateType} from "../../redux/redux-store";
 
 type AppDispatch = ThunkDispatch<AppStateType, any, authReducerActionsTypes>
 
-export const HeaderContainer: React.FC = () => {
+export const HeaderContainer: React.FC = React.memo(() => {
 
     const dispatch:AppDispatch = useDispatch();
 
@@ -24,7 +24,7 @@ export const HeaderContainer: React.FC = () => {
     return (
         <Header login={login} isAuth={isAuth}/>
     );
-}
+})
 
 
 

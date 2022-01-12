@@ -16,7 +16,7 @@ type PathParamType = {
 }
 type PropsType = RouteComponentProps<PathParamType>
 
-const ProfileContainer: React.FC<PropsType> = (props) => {
+const ProfileContainer: React.FC<PropsType> = React.memo((props) => {
 
     const {
         profile, status
@@ -42,7 +42,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
     return (
         <Profile profile={profile} status={status}/>
     );
-};
+})
 
 
 export default compose<React.ComponentType>(withRouter)(ProfileContainer);
