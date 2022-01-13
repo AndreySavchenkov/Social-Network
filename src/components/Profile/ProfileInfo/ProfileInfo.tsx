@@ -21,7 +21,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = React.memo((props) => {
         return <Preloader/>
     }
     return (
-        <div>
+        <div className={s.wrapper}>
             <div className={s.topImage} style={background}>
 
             </div>

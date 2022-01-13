@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
@@ -35,7 +35,7 @@ export const Dialogs: React.FC = React.memo(() => {
 
 
     return (
-        <div>
+        <div className={s.wrapper}>
             <div className={s.dialogs}>
                 <div className={s.dialogs_items}>
                     {dialogsElements}

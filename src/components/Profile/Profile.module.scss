@@ -2,4 +2,6 @@
 
 .container{
   background-color: $main-color;
+  display: flex;
+  flex-direction: column;
 }

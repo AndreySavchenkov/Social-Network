@@ -1,10 +1,16 @@
 @import './../../assets/scss/variables';
 
 .nav{
-  grid-area: n;
   background-color:  $main-color;
+  min-width: 95px;
   padding: 20px;
-  min-height: 85vh;
+  border-right: 5px solid $fourth-color;;
+
+  @media screen and (max-width:920px){
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
   .item a{
     text-decoration: none;
     color: $fourth-color;
