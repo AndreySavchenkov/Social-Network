@@ -28,13 +28,17 @@ export const UsersContainer: React.FC = React.memo(() => {
         thunkDispatch(getUsers(currentPage, pageSize, filter))
     }, [])
 
-    const onPageChanged = (pageNumber: number) => {
+   const onPageChanged = (pageNumber: number) => {
         thunkDispatch(getUsers(pageNumber, pageSize, filter))
+
     }
 
     const onFilterChanged = (filter: fiterType) => {
         thunkDispatch(getUsers(1, pageSize, filter))
     }
+
+
+
 
 
 

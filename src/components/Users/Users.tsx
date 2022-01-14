@@ -32,10 +32,11 @@ export const Users: React.FC<UsersType> = React.memo((props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
+    console.log(pages);
     return (
         <div>
             <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
+
             <div>
                 {pages.map(p => <span className={props.currentPage === p ? styles.selectedPage : ''}
                                       onClick={() => {
