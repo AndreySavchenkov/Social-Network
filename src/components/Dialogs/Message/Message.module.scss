@@ -1,0 +1,18 @@
+@import './src/assets/scss/variables.scss';
+
+.dialog {
+  margin: 5px;
+  padding: 5px;
+  font-family: "Comic Sans MS";
+  border: 5px solid $fourth-color;
+  border-radius: 10px;
+  color: $third-color;
+  max-width: 500px;
+  word-wrap: break-word;
+  @media screen and (max-width: 800px) {
+    max-width: 500px;
+  }
+  @media screen and (max-width: 500px) {
+    max-width: 200px;
+  }
+}

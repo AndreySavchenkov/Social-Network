@@ -1,0 +1,10 @@
+@import './src/assets/scss/variables';
+
+.dialog {
+  a {
+    font-family: "Comic Sans MS";
+    outline: none;
+    text-decoration: none;
+    color: $fourth-color;
+  }
+}

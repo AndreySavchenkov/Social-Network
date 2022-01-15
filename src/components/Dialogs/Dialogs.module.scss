@@ -1,9 +1,18 @@
-.wrapper {
-  .dialogs {
+@import './../../assets/scss/variables';
 
-    @media screen and (max-width: 500px){
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: $main-color;
+  min-height: 85vh;
+  @media screen and (max-width: 500px) {
 
   }
+
+  .dialogs {
+    display: flex;
 
     .dialogs_items {
       padding: 10px;
@@ -15,6 +24,11 @@
     }
 
     .messages {
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+
+
       .message {
         color: white;
       }
