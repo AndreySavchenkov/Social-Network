@@ -1,0 +1,33 @@
+@import "./src/assets/scss/variables";
+
+.container {
+  font-family: "Comic Sans MS";
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .inputContainer {
+    margin-left: 20px;
+
+    input {
+      margin-right: 10px;
+      height: 20px;
+    }
+    select{
+      height: 26px;
+    }
+  }
+
+  button {
+    width: 80px;
+    height: 40px;
+    background-color: $fourth-color;
+    color: $second-color;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}

@@ -1,7 +1,76 @@
-.photo {
-  width: 80px;
-  height: 60px;
+@import './src/assets/scss/variables';
+
+.usersContainer {
+  min-height: 88vh;
+  background-color: $main-color;
+  font-family: "Comic Sans MS";
+
+  .usersNumbersPages {
+    margin-left: 20px;
+    padding: 10px;
+    display: flex;
+
+    .selectedPage {
+      font-weight: bold;
+    }
+
+    div {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #FDFDFF;
+      cursor: pointer;
+      color: #FDFDFF;
+    }
+  }
+
+  .usersWithServer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+
+
+    .userWithServer {
+      display: flex;
+      width: 300px;
+      border: 5px solid $fourth-color;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 10px;
+
+      .containerPhotoFollow {
+        button {
+          width: 80px;
+          height: 40px;
+          background-color: $fourth-color;
+          color: $second-color;
+          cursor: pointer;
+          border: none;
+          border-radius: 10px;
+          font-weight: bold;
+        }
+
+        .photo {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      .containerInfo {
+        padding-left: 10px;
+
+        .name, .status {
+          color: $second-color;
+
+          span {
+            color: $fourth-color;
+          }
+        }
+      }
+    }
+  }
 }
-.selectedPage {
-  font-weight: bold;
-}
+
+
+
+
+

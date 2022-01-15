@@ -27,54 +27,56 @@ export const Users: React.FC<UsersType> = React.memo((props) => {
 
     const thunkDispatch: appDispatch = useDispatch();
 
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
+    //pagesCount (i <= pagesCount)
+    for (let i = 1; i <= 10; i++) {
         pages.push(i)
     }
-    console.log(pages);
+
+
     return (
-        <div>
+        <div className={styles.usersContainer}>
             <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
 
-            <div>
-                {pages.map(p => <span className={props.currentPage === p ? styles.selectedPage : ''}
-                                      onClick={() => {
-                                          props.onPageChanged(p)
-                                      }}>{p}</span>)}
+            <div className={styles.usersNumbersPages}>
+                {pages.map(p => <div className={props.currentPage === p ? styles.selectedPage : ''}
+                                     onClick={() => {
+                                         props.onPageChanged(p)
+                                     }}>{p}</div>)}
             </div>
-            {props.users.map((u =>
-                <div key={u.id}>
-            <span>
-                <div>
-                    <NavLink to={'/profile/' + u.id}>
-                        <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={styles.photo}
-                             alt={'avatar'}/>
-                    </NavLink>
 
-                </div>
-                <div>
-                    {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              thunkDispatch(getUnfollow(u.id))
-                                          }}>Unfollow</button>
-                        : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                  onClick={() => {
-                                      thunkDispatch(getFollow(u.id))
-                                  }}>Follow</button>}
-                </div>
-            </span>
-                    <span>
-                <span>
-                    <div>{u.name}</div>
-                    <div>{u.status}</div>
-                </span>
-                <span>
-                    <div>{'u.location.country'}</div>
-                    <div>{'u.location.city'}</div>
-                </span>
-            </span>
-                </div>))}
+            <div className={styles.usersWithServer}>
+                {
+                    props.users.map((u =>
+                        <div className={styles.userWithServer} key={u.id}>
+                            <div className={styles.containerPhotoFollow}>
+                                <div>
+                                    <NavLink to={'/profile/' + u.id}>
+                                        <img src={u.photos.small !== null ? u.photos.small : userPhoto}
+                                             className={styles.photo}
+                                             alt={'avatar'}/>
+                                    </NavLink>
+                                </div>
+                                <div>
+                                    {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                                          onClick={() => {
+                                                              thunkDispatch(getUnfollow(u.id))
+                                                          }}>Unfollow</button>
+                                        : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                                  onClick={() => {
+                                                      thunkDispatch(getFollow(u.id))
+                                                  }}>Follow</button>}
+                                </div>
+                            </div>
+                            <div className={styles.containerInfo}>
+                                <div className={styles.name}><span>Name: </span>{u.name}</div>
+                                <div className={styles.status}><span>Status: </span>{u.status}</div>
+                            </div>
+                        </div>))
+                }
+            </div>
         </div>
     )
 })
