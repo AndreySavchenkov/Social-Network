@@ -4,40 +4,46 @@ import Post from "./Post/Post";
 import {AppStateType} from "../../../redux/redux-store";
 import {useDispatch, useSelector} from "react-redux";
 import {Dispatch} from "redux";
-import {addPostAC, ProfileActionsTypes, updateNewPostTextAC} from "../../../redux/profile-reducer";
-
-
+import {addPostAC, ProfileActionsTypes} from "../../../redux/profile-reducer";
+import {Formik, Form, Field} from 'formik';
 
 
 const MyPosts: React.FC = React.memo(() => {
 
-    const state = (state:AppStateType) => state.profilePage
+    const state = (state: AppStateType) => state.profilePage
 
     const {
-        posts,
-        newPostText
+        posts
     } = useSelector(state)
 
     const dispatch = useDispatch<Dispatch<ProfileActionsTypes>>()
 
     let postsElements = posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message}
-                                                                                               likesCount={p.likesCount}/>)
-    let newPostElement: any = React.createRef();
+                                                                                         likesCount={p.likesCount}/>)
 
-    let onAddPost = () => {
-        dispatch(addPostAC());
+    let onAddPost = (values: string) => {
+        dispatch(addPostAC(values));
     }
 
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        dispatch(updateNewPostTextAC(text));
-    }
 
     return (
         <div className={s.postsBlock}>
             <div className={s.createMessageBlock}>
-                <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
-                <button onClick={onAddPost}>Post</button>
+                <Formik
+                    initialValues={{post: ''}}
+                    validate={values => {
+                    }}
+                    onSubmit={(values) => onAddPost(values.post)}
+                >
+                    {() => (
+                        <Form>
+                            <Field  className={s.textarea} type="text" name="post" placeholder="Some text"/>
+                            <button type="submit">
+                                Post
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
             <h3 className={s.title}>My Little Posts:</h3>
             <div className={s.posts}>

@@ -1,12 +1,13 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from './Dialogs.module.scss'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
 import {compose, Dispatch} from "redux";
-import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {ActionsTypes, sendMessageCreator} from "../../redux/dialogs-reducer";
 import {dialogsPage} from "../../redux/selectors";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {Formik, Form, Field} from 'formik';
 
 
 export const Dialogs: React.FC = React.memo(() => {
@@ -16,23 +17,17 @@ export const Dialogs: React.FC = React.memo(() => {
     const {
         messages,
         dialogs,
-        newMessageBody,
+        // newMessageBody,
     } = useSelector(dialogsPage)
 
 
-    let onSendMessageClick = () => {
-        dispatch(sendMessageCreator())
-    }
-
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value;
-        dispatch(updateNewMessageBodyCreator(body));
+    let onSendMessageClick = (values: string) => {
+        dispatch(sendMessageCreator(values))
     }
 
     let dialogsElements = dialogs.map((d: { name: string; id: number; }) => <DialogItem name={d.name} key={d.id}
                                                                                         id={d.id}/>)
     let messagesElements = messages.map((m: { message: string; }) => <Message message={m.message}/>)
-
 
     return (
         <div className={s.wrapper}>
@@ -44,14 +39,30 @@ export const Dialogs: React.FC = React.memo(() => {
                     {messagesElements}
                 </div>
             </div>
-            <div className={s.messageInput}>
-                <textarea className={s.area}
-                          onChange={onNewMessageChange}
-                          value={newMessageBody}
-                          placeholder='Enter your message...'
+            <div >
+                <Formik
+                    initialValues={{post: ''}}
+                    validate={values => {
+                    }}
+                    onSubmit={(values) => onSendMessageClick(values.post)}
                 >
-                </textarea>
-                <button className={s.button} onClick={onSendMessageClick}>Send</button>
+                    {() => (
+                        <Form className={s.messageInput}>
+                            <Field className={s.area} type="text" name="post" placeholder="Some text"/>
+                            <button className={s.button} type="submit">
+                                Post
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
+
+                {/*<textarea className={s.area}*/}
+                {/*          onChange={onNewMessageChange}*/}
+                {/*          value={newMessageBody}*/}
+                {/*          placeholder='Enter your message...'*/}
+                {/*>*/}
+                {/*</textarea>*/}
+                {/*<button className={s.button} onClick={onSendMessageClick}>Send</button>*/}
             </div>
         </div>
 

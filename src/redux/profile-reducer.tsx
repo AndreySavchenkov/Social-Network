@@ -1,18 +1,15 @@
-import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import {sendMessageCreator} from "./dialogs-reducer";
 import {profileAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {AppStateType} from "./redux-store";
 
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
 export type ProfileActionsTypes = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
 
@@ -83,18 +80,13 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         case ADD_POST:
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.values,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: '',
-            };
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText,
             }
         case SET_USER_PROFILE:
             return {
@@ -109,8 +101,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
     }
 }
 
-export const addPostAC = () => ({type: ADD_POST} as const);
-export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const);
+export const addPostAC = (values: string) => ({type: ADD_POST, values} as const);
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const);
 
