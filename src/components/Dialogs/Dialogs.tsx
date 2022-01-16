@@ -17,7 +17,6 @@ export const Dialogs: React.FC = React.memo(() => {
     const {
         messages,
         dialogs,
-        // newMessageBody,
     } = useSelector(dialogsPage)
 
 
@@ -55,14 +54,6 @@ export const Dialogs: React.FC = React.memo(() => {
                         </Form>
                     )}
                 </Formik>
-
-                {/*<textarea className={s.area}*/}
-                {/*          onChange={onNewMessageChange}*/}
-                {/*          value={newMessageBody}*/}
-                {/*          placeholder='Enter your message...'*/}
-                {/*>*/}
-                {/*</textarea>*/}
-                {/*<button className={s.button} onClick={onSendMessageClick}>Send</button>*/}
             </div>
         </div>
 

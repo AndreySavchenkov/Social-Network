@@ -22,7 +22,7 @@ export const HeaderContainer: React.FC = React.memo(() => {
     }, [])
 
     return (
-        <Header login={login} isAuth={isAuth}/>
+        <Header login={login} isAuth={isAuth} />
     );
 })
 

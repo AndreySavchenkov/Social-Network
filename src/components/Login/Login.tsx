@@ -5,6 +5,7 @@ import {AppDispatch} from "../Profile/ProfileContainer";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {auth} from "../../redux/selectors";
+import style from './Login.module.scss';
 
 
 
@@ -18,8 +19,8 @@ export const Login: React.FC = React.memo(() => {
         return <Redirect to={'/profile'}/>
     }
 
-    return (<div>
-        <h1>LOGIN</h1>
+    return (<div className={style.wrapper}>
+        <h2>LOGIN</h2>
         <Formik
             initialValues={{email: '',password: '', rememberMe: false}}
             validate={values => {
@@ -27,11 +28,13 @@ export const Login: React.FC = React.memo(() => {
             onSubmit={(values) => dispatch(login(values.email, values.password, values.rememberMe))}
         >
             {() => (
-                <Form>
-                    <Field   type="email" name="email" placeholder="Email"/>
-                    <Field   type="password" name="password" placeholder="Password"/>
-                    <Field   type="checkbox" name="rememberMe"/> remember me
-                    <button type="submit">
+                <Form className={style.form}>
+                    <Field  className={style.email} type="email" name="email" placeholder="Email"/>
+                    <Field  className={style.password} type="password" name="password" placeholder="Password"/>
+                    <div className={style.checkbox}>
+                        <Field   type="checkbox" name="rememberMe"/> Remember me
+                    </div>
+                    <button className={style.button} type="submit">
                         Login
                     </button>
                 </Form>

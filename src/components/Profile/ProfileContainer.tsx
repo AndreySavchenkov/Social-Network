@@ -22,9 +22,7 @@ const ProfileContainer: React.FC<PropsType> = React.memo((props) => {
         profile, status
     } = useSelector(profilePage)
 
-
     const dispatch: AppDispatch = useDispatch();
-
 
     useEffect(() => {
         let userId = props.match.params.userId;
@@ -33,16 +31,11 @@ const ProfileContainer: React.FC<PropsType> = React.memo((props) => {
         }
         dispatch(getUserProfile(userId))
         dispatch(getStatus(userId))
-
     })
-
-
-
 
     return (
         <Profile profile={profile} status={status}/>
     );
 })
-
 
 export default compose<React.ComponentType>(withRouter)(ProfileContainer);

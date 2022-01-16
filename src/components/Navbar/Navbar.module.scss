@@ -3,10 +3,12 @@
 .nav {
   background-color: $main-color;
   min-width: 95px;
+  min-height: 82vh;
   padding: 20px;
   border-right: 5px solid $fourth-color;
 
   @media screen and (max-width: 920px) {
+    min-height: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
