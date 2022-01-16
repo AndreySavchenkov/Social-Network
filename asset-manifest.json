@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Social-Network/static/css/main.3fd94478.chunk.css",
-    "main.js": "/Social-Network/static/js/main.31eab63b.chunk.js",
-    "main.js.map": "/Social-Network/static/js/main.31eab63b.chunk.js.map",
-    "runtime-main.js": "/Social-Network/static/js/runtime-main.5729fe47.js",
-    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.5729fe47.js.map",
-    "static/js/2.baace7ae.chunk.js": "/Social-Network/static/js/2.baace7ae.chunk.js",
-    "static/js/2.baace7ae.chunk.js.map": "/Social-Network/static/js/2.baace7ae.chunk.js.map",
-    "static/js/3.77effbe3.chunk.js": "/Social-Network/static/js/3.77effbe3.chunk.js",
-    "static/js/3.77effbe3.chunk.js.map": "/Social-Network/static/js/3.77effbe3.chunk.js.map",
+    "main.css": "/Social-Network/static/css/main.81833fb5.chunk.css",
+    "main.js": "/Social-Network/static/js/main.a411ce4e.chunk.js",
+    "main.js.map": "/Social-Network/static/js/main.a411ce4e.chunk.js.map",
+    "runtime-main.js": "/Social-Network/static/js/runtime-main.a5bf7773.js",
+    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.a5bf7773.js.map",
+    "static/js/2.a616c86c.chunk.js": "/Social-Network/static/js/2.a616c86c.chunk.js",
+    "static/js/2.a616c86c.chunk.js.map": "/Social-Network/static/js/2.a616c86c.chunk.js.map",
+    "static/js/3.a12d5796.chunk.js": "/Social-Network/static/js/3.a12d5796.chunk.js",
+    "static/js/3.a12d5796.chunk.js.map": "/Social-Network/static/js/3.a12d5796.chunk.js.map",
     "index.html": "/Social-Network/index.html",
-    "static/css/main.3fd94478.chunk.css.map": "/Social-Network/static/css/main.3fd94478.chunk.css.map",
-    "static/js/2.baace7ae.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.baace7ae.chunk.js.LICENSE.txt",
+    "static/css/main.81833fb5.chunk.css.map": "/Social-Network/static/css/main.81833fb5.chunk.css.map",
+    "static/js/2.a616c86c.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.a616c86c.chunk.js.LICENSE.txt",
     "static/media/avatarForMessage.2fee3635.jpeg": "/Social-Network/static/media/avatarForMessage.2fee3635.jpeg",
     "static/media/ninjaPicturejpg.3f72aba8.jpg": "/Social-Network/static/media/ninjaPicturejpg.3f72aba8.jpg",
     "static/media/preloader.b767aab4.svg": "/Social-Network/static/media/preloader.b767aab4.svg",
     "static/media/turtleLogo.519ef8c3.svg": "/Social-Network/static/media/turtleLogo.519ef8c3.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5729fe47.js",
-    "static/js/2.baace7ae.chunk.js",
-    "static/css/main.3fd94478.chunk.css",
-    "static/js/main.31eab63b.chunk.js"
+    "static/js/runtime-main.a5bf7773.js",
+    "static/js/2.a616c86c.chunk.js",
+    "static/css/main.81833fb5.chunk.css",
+    "static/js/main.a411ce4e.chunk.js"
   ]
 }
