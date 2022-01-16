@@ -4,7 +4,7 @@ import s from './Header.module.scss';
 import logoTurtle from './../../assets/images/turtleLogo.svg';
 
 type HeaderPropsType = {
-    login: string,
+    login: string | null,
     isAuth: boolean
 }
 
