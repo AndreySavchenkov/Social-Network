@@ -53,6 +53,8 @@ export const login = (email:string, password:string, rememberMe: boolean) => (di
     authAPI.login(email,password,rememberMe).then(response => {
         if(response.data.resultCode === 0) {
            dispatch(getAuthUserData())
+        } else {
+
         }
     });
 }

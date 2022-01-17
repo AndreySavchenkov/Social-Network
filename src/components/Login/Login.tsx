@@ -1,5 +1,5 @@
 import React from "react";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../Profile/ProfileContainer";
 import {login} from "../../redux/auth-reducer";
@@ -24,13 +24,27 @@ export const Login: React.FC = React.memo(() => {
         <Formik
             initialValues={{email: '',password: '', rememberMe: false}}
             validate={values => {
-            }}
+                const errors = {};
+                if (!values.email) {
+                    //@ts-ignore
+                    errors.email = 'Email is required';
+                } else if (
+                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                ) {
+                    //@ts-ignore
+                    errors.email = 'Invalid email address';
+                }
+                return errors;
+            }
+            }
             onSubmit={(values) => dispatch(login(values.email, values.password, values.rememberMe))}
         >
             {() => (
                 <Form className={style.form}>
                     <Field  className={style.email} type="email" name="email" placeholder="Email"/>
+                    <ErrorMessage name="email" component="div" className={style.formError}/>
                     <Field  className={style.password} type="password" name="password" placeholder="Password"/>
+                    <ErrorMessage name="password" component="div" />
                     <div className={style.checkbox}>
                         <Field   type="checkbox" name="rememberMe"/> Remember me
                     </div>
