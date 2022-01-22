@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {fiterType, getUsers, usersReducerActionsTypes} from "../../redux/users-reducer";
+import {fiterType, requestUsers, usersReducerActionsTypes} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersPage} from "../../redux/selectors";
@@ -25,22 +25,16 @@ export const UsersContainer: React.FC = React.memo(() => {
     const thunkDispatch: appDispatch = useDispatch();
 
     useEffect(() => {
-        thunkDispatch(getUsers(currentPage, pageSize, filter))
+        thunkDispatch(requestUsers(currentPage, pageSize, filter))
     }, [thunkDispatch, currentPage, pageSize, filter])
 
    const onPageChanged = (pageNumber: number) => {
-        thunkDispatch(getUsers(pageNumber, pageSize, filter))
-
+        thunkDispatch(requestUsers(pageNumber, pageSize, filter))
     }
 
     const onFilterChanged = (filter: fiterType) => {
-        thunkDispatch(getUsers(1, pageSize, filter))
+        thunkDispatch(requestUsers(1, pageSize, filter))
     }
-
-
-
-
-
 
     return <>
         {isFetching ?

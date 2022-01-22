@@ -4,7 +4,7 @@ import userPhoto from "../../assets/images/userImage.png";
 import {fiterType, getFollow, getUnfollow, usersReducerActionsTypes, userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {Dispatch} from "redux";
+// import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../../redux/redux-store";
 import {UsersSearchForm} from "./UsersSearchForm";
@@ -21,7 +21,7 @@ export type UsersType = {
 
 export const Users: React.FC<UsersType> = React.memo((props) => {
 
-    const dispatch = useDispatch<Dispatch<usersReducerActionsTypes>>()
+    // const dispatch = useDispatch<Dispatch<usersReducerActionsTypes>>()
 
     type appDispatch = ThunkDispatch<AppStateType, any, usersReducerActionsTypes>
 

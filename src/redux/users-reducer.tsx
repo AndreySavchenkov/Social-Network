@@ -128,11 +128,12 @@ export const toggleIsFollowing = (isFetching: boolean, userId: number) => ({
 type DispatchType = Dispatch<usersReducerActionsTypes>
 type GetStateType = () => AppStateType
 
-export const getUsers = (currentPage: number, pageSize: number, filter: fiterType) => {
+export const requestUsers = (page: number, pageSize: number, filter: fiterType) => {
     return (dispatch: DispatchType, getState: GetStateType) => {
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page))
         dispatch(setFilter(filter));
-        usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend).then(data => {
+        usersAPI.getUsers(page, pageSize, filter.term, filter.friend).then(data => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
