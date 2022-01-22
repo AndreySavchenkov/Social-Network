@@ -8,21 +8,24 @@ import {auth} from "../../redux/selectors";
 import style from './Login.module.scss';
 
 
-
 export const Login: React.FC = React.memo(() => {
 
-    const dispatch:AppDispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     const isAuth = useSelector(auth);
 
-    if(isAuth.isAuth) {
+    if (isAuth.isAuth) {
         return <Redirect to={'/profile'}/>
     }
 
     return (<div className={style.wrapper}>
         <h2>LOGIN</h2>
         <Formik
-            initialValues={{email: '',password: '', rememberMe: false}}
+            initialValues={{
+                email: '',
+                password: '',
+                rememberMe: false
+            }}
             validate={values => {
                 const errors = {};
                 if (!values.email) {
@@ -37,16 +40,19 @@ export const Login: React.FC = React.memo(() => {
                 return errors;
             }
             }
-            onSubmit={(values) => dispatch(login(values.email, values.password, values.rememberMe))}
+            onSubmit={(values,) => {
+
+                dispatch(login(values.email, values.password, values.rememberMe))
+            }}
         >
             {() => (
                 <Form className={style.form}>
-                    <Field  className={style.email} type="email" name="email" placeholder="Email"/>
+                    <Field className={style.email} type="email" name="email" placeholder="Email"/>
                     <ErrorMessage name="email" component="div" className={style.formError}/>
-                    <Field  className={style.password} type="password" name="password" placeholder="Password"/>
-                    <ErrorMessage name="password" component="div" />
+                    <Field className={style.password} type="password" name="password" placeholder="Password"/>
+                    <ErrorMessage name="password" component="div"/>
                     <div className={style.checkbox}>
-                        <Field   type="checkbox" name="rememberMe"/> Remember me
+                        <Field type="checkbox" name="rememberMe"/> Remember me
                     </div>
                     <button className={style.button} type="submit">
                         Login
