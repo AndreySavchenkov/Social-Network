@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../ProfileContainer";
-import {getStatus, updateStatus} from "../../../redux/profile-reducer";
+import {updateStatus} from "../../../redux/profile-reducer";
 
 type ProfileStatusType = {
     status: string
 }
 
 export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => {
-
 
 
     const dispatch: AppDispatch = useDispatch();
@@ -24,9 +23,13 @@ export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => 
         setLocalStatus(e.currentTarget.value)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        setLocalStatus(props.status)
+    }, [props.status])
+
+    useEffect(() => {
         dispatch(updateStatus(localStatus))
-    },[localStatus])
+    }, [dispatch, localStatus])
 
     return (
         <div>
@@ -37,7 +40,8 @@ export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => 
             }
             {editMode &&
             <div>
-                <input  autoFocus={true} onBlur={toggleEditMode} type="text" value={localStatus} onChange={onStatusChange}/>
+                <input autoFocus={true} onBlur={toggleEditMode} type="text" value={localStatus}
+                       onChange={onStatusChange}/>
             </div>
             }
         </div>
