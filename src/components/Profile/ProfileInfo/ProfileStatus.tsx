@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FC, memo, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../ProfileContainer";
 import {updateStatus} from "../../../redux/profile-reducer";
@@ -7,8 +7,7 @@ type ProfileStatusType = {
     status: string
 }
 
-export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => {
-
+export const ProfileStatus: FC<ProfileStatusType> = memo((props) => {
 
     const dispatch: AppDispatch = useDispatch();
 
@@ -45,6 +44,5 @@ export const ProfileStatus: React.FC<ProfileStatusType> = React.memo((props) => 
             </div>
             }
         </div>
-
     )
 })

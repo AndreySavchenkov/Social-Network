@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import s from './Header.module.scss';
 import logoTurtle from './../../assets/images/turtleLogo.svg';
@@ -11,7 +11,7 @@ type HeaderPropsType = {
     isAuth: boolean
 }
 
-const Header: React.FC<HeaderPropsType> = React.memo((props) => {
+const Header: FC<HeaderPropsType> = memo((props) => {
 
     const dispatch:AppDispatch = useDispatch();
 

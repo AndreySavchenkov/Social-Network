@@ -1,5 +1,5 @@
 import {Field, Form, Formik} from "formik";
-import React from "react";
+import React, {FC, memo} from "react";
 import {fiterType} from "../../redux/users-reducer";
 import style from './UsersSearchForm.module.scss';
 
@@ -12,9 +12,9 @@ type usersSearchFormType = {
     onFilterChanged: (filter: fiterType) => void
 }
 
-export const UsersSearchForm: React.FC<usersSearchFormType> = React.memo((props) => {
+export const UsersSearchForm: FC<usersSearchFormType> = memo((props) => {
     return (
-        <div >
+        <div>
             <Formik
                 initialValues={{term: '', friend: null}}
                 validate={values => {
@@ -23,7 +23,7 @@ export const UsersSearchForm: React.FC<usersSearchFormType> = React.memo((props)
                 }}
                 //@ts-ignore
                 onSubmit={(values: FormType, {setSubmitting}) => {
-                    const filter:fiterType = {
+                    const filter: fiterType = {
                         term: values.term,
                         friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
                     }

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, memo, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {fiterType, requestUsers, usersReducerActionsTypes} from "../../redux/users-reducer";
@@ -7,8 +7,7 @@ import {Preloader} from "../common/Preloader/Preloader";
 import {usersPage} from "../../redux/selectors";
 import {ThunkDispatch} from "redux-thunk";
 
-
-export const UsersContainer: React.FC = React.memo(() => {
+export const UsersContainer: FC = memo(() => {
 
     const {
         users,
@@ -28,7 +27,7 @@ export const UsersContainer: React.FC = React.memo(() => {
         thunkDispatch(requestUsers(currentPage, pageSize, filter))
     }, [thunkDispatch, currentPage, pageSize, filter])
 
-   const onPageChanged = (pageNumber: number) => {
+    const onPageChanged = (pageNumber: number) => {
         thunkDispatch(requestUsers(pageNumber, pageSize, filter))
     }
 

@@ -1,10 +1,9 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import styles from "./users.module.scss";
 import userPhoto from "../../assets/images/userImage.png";
 import {fiterType, getFollow, getUnfollow, usersReducerActionsTypes, userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-// import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../../redux/redux-store";
 import {UsersSearchForm} from "./UsersSearchForm";
@@ -13,22 +12,19 @@ export type UsersType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    users: Array<userType>
-    followingInProgress: Array<number>
+    users: userType[]
+    followingInProgress: number[]
     onPageChanged: (pageNumber: number) => void
     onFilterChanged: (filter: fiterType) => void
 }
 
-export const Users: React.FC<UsersType> = React.memo((props) => {
-
-    // const dispatch = useDispatch<Dispatch<usersReducerActionsTypes>>()
+export const Users: FC<UsersType> = memo((props) => {
 
     type appDispatch = ThunkDispatch<AppStateType, any, usersReducerActionsTypes>
 
     const thunkDispatch: appDispatch = useDispatch();
 
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     //pagesCount (i <= pagesCount)
     for (let i = 1; i <= 10; i++) {

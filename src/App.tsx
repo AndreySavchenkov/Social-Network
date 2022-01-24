@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, memo, useEffect} from 'react';
 import './App.scss';
 import {Navbar} from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -16,7 +16,7 @@ import {app} from "./redux/selectors";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
 
-const App: React.FC = React.memo(() => {
+const App: FC = memo(() => {
 
     type AppDispatch = ThunkDispatch<AppStateType, any, authReducerActionsTypes>
 
@@ -29,20 +29,20 @@ const App: React.FC = React.memo(() => {
     }, [dispatch, initialized])
 
     return (!initialized) ? <Preloader/> :
-            <BrowserRouter>
-                <div className='app-wrapper'>
-                    <HeaderContainer/>
-                    <div className='app-inner'>
-                        <Navbar/>
-                        <div className='app-wrapper-content'>
-                            <Route path='/dialogs' render={() => <Dialogs/>}/>
-                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                            <Route path='/users' render={() => <UsersContainer/>}/>
-                            <Route path='/login' render={() => <Login/>}/>
-                        </div>
+        <BrowserRouter>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <div className='app-inner'>
+                    <Navbar/>
+                    <div className='app-wrapper-content'>
+                        <Route path='/dialogs' render={() => <Dialogs/>}/>
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
                     </div>
                 </div>
-            </BrowserRouter>
+            </div>
+        </BrowserRouter>
 })
 
 export default App;

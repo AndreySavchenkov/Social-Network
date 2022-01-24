@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import s from './../DialogItem/DialogItem.module.scss';
 
@@ -7,9 +7,9 @@ type dialogItemPropsType = {
     id: number
 }
 
-export const DialogItem: React.FC<dialogItemPropsType> = React.memo((props) => {
+export const DialogItem: FC<dialogItemPropsType> = memo((props) => {
 
-    let path = '/dialogs/' + props.id
+    let path = '/dialogs/' + props.id;
 
     return (
         <nav className={s.dialog}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../Profile/ProfileContainer";
@@ -8,7 +8,7 @@ import {auth} from "../../redux/selectors";
 import style from './Login.module.scss';
 
 
-export const Login: React.FC = React.memo(() => {
+export const Login: FC = memo(() => {
 
     const dispatch: AppDispatch = useDispatch();
 

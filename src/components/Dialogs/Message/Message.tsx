@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import s from './Message.module.scss'
 
 
@@ -6,7 +6,7 @@ type messagePropsType = {
     message: string
 }
 
-export const Message: React.FC<messagePropsType> = React.memo((props) => {
+export const Message: FC<messagePropsType> = memo((props) => {
     return (
         <div className={s.dialog}>
             {props.message}

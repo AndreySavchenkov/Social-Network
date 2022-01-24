@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import s from './MyPosts.module.scss';
 import Post from "./Post/Post";
 import {AppStateType} from "../../../redux/redux-store";
@@ -8,7 +8,7 @@ import {addPostAC, ProfileActionsTypes} from "../../../redux/profile-reducer";
 import {Formik, Form, Field} from 'formik';
 
 
-const MyPosts: React.FC = React.memo(() => {
+const MyPosts: FC = memo(() => {
 
     const state = (state: AppStateType) => state.profilePage
 
@@ -20,11 +20,9 @@ const MyPosts: React.FC = React.memo(() => {
 
     let postsElements = posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message}
                                                                                          likesCount={p.likesCount}/>)
-
     let onAddPost = (values: string) => {
         dispatch(addPostAC(values));
     }
-
 
     return (
         <div className={s.postsBlock}>
@@ -37,7 +35,7 @@ const MyPosts: React.FC = React.memo(() => {
                 >
                     {() => (
                         <Form>
-                            <Field  className={s.textarea} type="text" name="post" placeholder="Some text"/>
+                            <Field className={s.textarea} type="text" name="post" placeholder="Some text"/>
                             <button type="submit">
                                 Post
                             </button>

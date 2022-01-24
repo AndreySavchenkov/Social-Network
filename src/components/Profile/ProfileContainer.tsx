@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, memo, useEffect} from "react";
 import {Profile} from "./Profile";
 import {getStatus, getUserProfile, ProfileActionsTypes} from "../../redux/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,7 +16,7 @@ type PathParamType = {
 }
 type PropsType = RouteComponentProps<PathParamType>
 
-const ProfileContainer: React.FC<PropsType> = React.memo((props) => {
+const ProfileContainer: FC<PropsType> = memo((props) => {
 
     const {
         id, isAuth

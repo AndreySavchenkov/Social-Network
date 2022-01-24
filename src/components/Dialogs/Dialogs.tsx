@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import s from './Dialogs.module.scss'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -10,7 +10,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {Formik, Form, Field} from 'formik';
 
 
-export const Dialogs: React.FC = React.memo(() => {
+export const Dialogs: FC = memo(() => {
 
     const dispatch = useDispatch<Dispatch<ActionsTypes>>()
 
@@ -38,7 +38,7 @@ export const Dialogs: React.FC = React.memo(() => {
                     {messagesElements}
                 </div>
             </div>
-            <div >
+            <div>
                 <Formik
                     initialValues={{post: ''}}
                     validate={values => {

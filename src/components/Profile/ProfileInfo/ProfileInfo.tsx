@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import s from './ProfileInfo.module.scss';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/profile-reducer";
@@ -10,8 +10,7 @@ type ProfileInfoType = {
     status: string,
 }
 
-
-const ProfileInfo: React.FC<ProfileInfoType> = React.memo((props) => {
+const ProfileInfo: FC<ProfileInfoType> = memo((props) => {
 
     const background = {
         backgroundImage: `url(${ninjaTurtle})`,

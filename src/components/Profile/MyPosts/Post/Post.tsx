@@ -1,15 +1,14 @@
-import React from "react";
+import React, {FC, memo} from "react";
 import s from './Post.module.scss';
 import avatar from './../../../../assets/images/avatarForMessage.jpeg'
 import heart from './../../../../assets/images/heart.png'
 
 type postPropsType = {
-    message:string,
+    message: string,
     likesCount: number
 }
 
-const Post: React.FC<postPropsType> = React.memo((props) => {
-
+const Post: FC<postPropsType> = memo((props) => {
     return (
         <div className={s.item}>
             <div className={s.textContainer}>
