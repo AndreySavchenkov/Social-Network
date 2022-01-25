@@ -1,14 +1,16 @@
 import {addPostAC} from "./profile-reducer";
 
 const SEND_MESSAGE = 'SEND_MESSAGE';
+const ADD_DIALOG = 'ADD_DIALOG';
 
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof addDialog>
 
 
 export type DialogPageType = {
-    messages: Array<MessageType>,
-    dialogs: Array<DialogType>,
+    messages: MessageType[],
+    dialogs: DialogType[],
 }
 export type MessageType = {
     id: number,
@@ -46,9 +48,15 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
                 ...state,
                 messages: [...state.messages, {id: 6, message: action.values}],
             };
+        case ADD_DIALOG:
+            return {
+                ...state,
+                dialogs: [...state.dialogs, {id: 6, name: action.name}],
+            };
         default:
             return state;
     }
 }
 
 export const sendMessageCreator = (values: string) => ({type: SEND_MESSAGE, values} as const);
+export const addDialog = (name: string) => ({type: ADD_DIALOG, name} as const);

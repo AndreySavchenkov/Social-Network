@@ -3,12 +3,10 @@ import {profileAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {AppStateType} from "./redux-store";
 
-
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
-
 
 export type ProfileActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageCreator>
@@ -48,6 +46,7 @@ export type ProfileType = {
         large: string
     }
 }
+
 let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: "It's my first post", likesCount: 722},
