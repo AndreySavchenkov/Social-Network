@@ -10,31 +10,29 @@ type ProfileInfoType = {
     status: string,
 }
 
-const ProfileInfo: FC<ProfileInfoType> = memo((props) => {
+const ProfileInfo: FC<ProfileInfoType> = memo(({profile,status}) => {
 
     const background = {
         backgroundImage: `url(${ninjaTurtle})`,
     }
 
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader/>
     }
     return (
         <div className={s.wrapper}>
             <div className={s.topImage} style={background}>
-
             </div>
             <div className={s.descriptionBlock}>
                 <div className={s.infoContainer}>
-                    <p><span>Name:</span> {props.profile.fullName}</p>
-                    <p><span>Obout me:</span> {props.profile.aboutMe}</p>
-                    <p><span>Find:</span> {props.profile.lookingForAJobDescription}</p>
-                    <ProfileStatus status={props.status}/>
+                    <p><span>Name:</span> {profile.fullName}</p>
+                    <p><span>Obout me:</span> {profile.aboutMe}</p>
+                    <p><span>Find:</span> {profile.lookingForAJobDescription}</p>
+                    <ProfileStatus status={status}/>
                 </div>
                 <div className={s.imageContainer}>
-                    <img src={props.profile.photos.large}/>
+                    <img src={profile.photos.large}/>
                 </div>
-
             </div>
         </div>
     )

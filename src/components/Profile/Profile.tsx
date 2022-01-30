@@ -9,10 +9,10 @@ export type ProfileCType = {
     status: string
 }
 
-export const Profile: FC<ProfileCType> = memo((props) => {
+export const Profile: FC<ProfileCType> = memo(({profile, status}) => {
     return (
         <div className={style.container}>
-            <ProfileInfo profile={props.profile} status={props.status}/>
+            <ProfileInfo profile={profile} status={status}/>
             <MyPosts/>
         </div>
     );
