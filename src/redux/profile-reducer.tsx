@@ -118,25 +118,19 @@ export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as co
 type DispatchType = Dispatch<ProfileActionsTypes>
 type GetStateType = () => AppStateType
 
-export const getUserProfile = (userId: string) => (dispatch: DispatchType, getState: GetStateType) => {
-    usersAPI.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const getUserProfile = (userId: string) => async (dispatch: DispatchType, getState: GetStateType) => {
+    let response = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data))
 }
 
-export const getStatus = (userId: string) => (dispatch: DispatchType) => {
-    profileAPI.getStatus(userId)
-        .then(response => {
-            dispatch(setStatus(response.data))
-        })
+export const getStatus = (userId: string) => async (dispatch: DispatchType) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data))
 }
 
-export const updateStatus = (status: string) => (dispatch: DispatchType) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatus(status));
-            }
-        })
+export const updateStatus = (status: string) => async (dispatch: DispatchType) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 }
